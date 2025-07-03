@@ -13,6 +13,8 @@ from file_methods.txt_file_methods import create_and_format_pretty_table
 
 from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transformed_table
 
+from utils.git_utils import git_push_md
+
 def gen_report():
   GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
   if not GOOGLE_API_KEY:
