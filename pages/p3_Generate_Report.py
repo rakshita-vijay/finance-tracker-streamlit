@@ -10,7 +10,13 @@ st.divider()
 
 if st.button("Generate Report"):
     md_path = gen_report()
+    
+    st.divider()
+    
     st.success("Report generated!")
     st.write(f"Markdown report saved at: `{md_path}`")
+
+    st.divider()
+    
     with open(md_path, "r") as f:
         st.markdown(f.read()) 
