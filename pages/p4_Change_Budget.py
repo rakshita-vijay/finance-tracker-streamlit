@@ -18,5 +18,16 @@ def change_budget_page():
         st.write(f"**{yearly.title()}**")
     except StopIteration:
         st.warning("Budget info not found or malformed.") 
+        
+    st.divider()
+        
+    if st.button("Change Budget"):
+        changeBudget()
+        
+        st.success("Budget updated!")
+        
+        st.subheader("Updated Budgets")
+        budget_list = get_budgets_list()
+        displayBudget(budget_list)
 
 change_budget_page() 
