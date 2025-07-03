@@ -14,7 +14,7 @@ def add_transactions_page():
     for i in range(num):
         st.subheader(f"Transaction #{i+1}")
         with st.form(key=f"form_{i}", clear_on_submit=False):
-            date = st.text_input("Date (MM/DD/YYYY or MM-DD-YYYY)", key=f"date_{i}")
+            date = st.date_input("Date (MM/DD/YYYY or MM-DD-YYYY)", key=f"date_{i}") 
             desc = st.text_input("Description", key=f"desc_{i}")
             amt = st.number_input("Amount", key=f"amt_{i}")
             pay_method = st.selectbox("Payment Method", ["Cash", "Credit Card", "Debit Card", "Bank Transfer", "UPI", "Other"], key=f"pay_{i}")
