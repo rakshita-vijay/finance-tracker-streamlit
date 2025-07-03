@@ -28,7 +28,7 @@ def view_spending_page():
 
     # Prepare table data
     headers = ["S.NO", "DATE", "DESCRIPTION", "AMOUNT", "PAYMENT METHOD", "STATUS", "NOTES"]
-    rows = [dict(zip(headers, row)) for row in csv_content]
+    rows = [dict(zip(headers, row)) for row in csv_content[1:]]
 
     st.table(rows)
 
