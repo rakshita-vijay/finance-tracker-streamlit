@@ -1,6 +1,9 @@
 import streamlit as st
-from file_methods.csv_file_methods import get_trans_line_details, add_to_csv
+from file_methods.csv_file_methods import get_trans_line_details, add_to_csv 
 
+def add_transactions_button():
+    st.page_link("pages/1_Add_Transactions.py", label="➕ Add Transactions")
+    
 st.header("➕ Add Transaction(s)")
 
 num = st.number_input("How many transactions do you want to add?", min_value=1, max_value=20, value=1)
