@@ -26,24 +26,7 @@ def gen_report():
     model="gemini/gemini-2.0-flash",
     temperature=0.5,
     api_key=GOOGLE_API_KEY
-  )
-
-  # analyser = Agent(
-  #   role = "Transaction Data Analyst",
-
-  #   goal = '''Gather transaction data from {pretty_table}, which is the pretty table version of the csv file.
-  #   Perform comprehensive analysis of transaction data including:
-  #   - Calculate daily/weekly/monthly transaction totals
-  #   - Identify top 5 largest transactions
-  #   - Detect unusual patterns (e.g., duplicate transactions, abnormal frequencies)
-  #   - Categorize spending patterns
-  #   - Flag potential anomalies''',
-
-  #   backstory = "Former forensic accountant at Deloitte specializing in transaction pattern detection",
-
-  #   verbose = True,
-  #   llm = llm
-  # )
+  ) 
 
   analyser = Agent(
     role = "Transaction Intelligence Analyst",
@@ -57,22 +40,7 @@ def gen_report():
     backstory = "Ex-McKinsey financial strategist specializing in transaction intelligence",
     verbose = True,
     llm = llm
-  )
-
-  # rep_generator = Agent(
-  #   role = "Financial Report Specialist",
-  #   goal = """Generate comprehensive reports including:
-  #   - Executive summary
-  #   - Analysis period
-  #   - Visual spending breakdowns
-  #   - Anomaly highlights
-  #   - Actionable recommendations
-  #   - Appendices with full data
-  #   Format: Comprehensive Markdown document with section headers.""",
-  #   backstory = "Lead report designer for Fortune 500 financial departments",
-  #   verbose = True,
-  #   llm = llm
-  # )
+  ) 
 
   rep_generator = Agent(
     role = "Financial Strategy Consultant",
@@ -86,20 +54,7 @@ def gen_report():
     backstory = "Lead report designer for Fortune 500 financial departments",
     verbose = True,
     llm = llm
-  )
-
-  # analysis = Task(
-  #   name = "Transaction Analysis",
-  #   agent = analyser,
-  #   description = """Analyze {pretty_table} transaction data and:
-  #   1. Calculate daily transaction volume and value trends
-  #   2. Identify top 3 largest transactions with descriptions
-  #   3. Detect duplicate transactions (same amount/date/description)
-  #   4. Flag transactions exceeding $10,000
-  #   5. Categorize spending into: Groceries, Utilities, Entertainment, etc.
-  #   6. Highlight any date-based anomalies""",
-  #   expected_output = "JSON report with keys: daily_totals, top_transactions, duplicates, large_transactions, spending_categories, anomalies"
-  # )
+  ) 
 
   analysis = Task(
     name = "Strategic Transaction Analysis",
@@ -121,21 +76,7 @@ def gen_report():
     - Quantify overspend impact on annual savings goals
     """,
     expected_output = "JSON with: cash_position, behavioral_segments, liquidity_risk, fraud_networks, expense_optimization"
-  )
-
-  # to_do_rep_generation = Task(
-  #   name = "Report Compilation",
-  #   agent = rep_generator,
-  #   description = """Create professional report using analysis from {analysis.output}:
-  #   - Section 0: Executive summary of key findings
-  #   - Section 1: Spending trends (time-based charts)
-  #   - Section 2: Anomaly alerts with risk ratings
-  #   - Section 3: Top 10 transactions table
-  #   - Section 4: Category breakdown pie chart
-  #   - Appendix: Full transaction table from {pretty_table}
-  #   Format: Comprehensive Markdown document with section headers.""",
-  #   expected_output = "Full report in Markdown format with 5 sections and appendix"
-  # )
+  ) 
 
   to_do_rep_generation = Task(
     name = "Strategic Financial Brief",
