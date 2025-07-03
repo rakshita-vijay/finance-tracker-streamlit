@@ -57,6 +57,8 @@ def changeBudget():
       f.close()
       
       git_push_txt()
+     return True
+  return False
 
 '''
 def calc_percent(prev_months_expenditure, curr_month_expenditure, bud_lst):
