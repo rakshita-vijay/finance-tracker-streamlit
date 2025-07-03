@@ -1,0 +1,6 @@
+crewai
+prettytable
+fpdf
+pypdf
+streamlit
+streamlit-option-menu
