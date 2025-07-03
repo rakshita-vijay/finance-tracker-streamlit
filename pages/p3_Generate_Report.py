@@ -13,7 +13,7 @@ st.header("📝 Generate AI Report")
 
 st.divider()
 
-md_path = ""
+md_path = "saved_files/md_report.md"
 
 if st.button("Generate Report"): 
     st.divider()
