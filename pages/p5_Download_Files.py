@@ -19,3 +19,5 @@ def download_files_page():
             filename = f"latest_file.{ext}"  # Replace with actual logic
             download_file(filename)
             st.success(f"{choice} file downloaded.")
+
+download_files_page()
