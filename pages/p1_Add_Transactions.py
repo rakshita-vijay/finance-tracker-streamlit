@@ -53,7 +53,7 @@ def add_transactions_page():
 
     if all_trans:
         add_to_csv(all_trans)
-        update_txt_file(find_csv_file_location())
+        update_txt_file()
         # Push to GitHub
         push_success, push_msg = git_push_csv(csv_relative_path="saved_files/your_csv_file.csv")
         if push_success:
