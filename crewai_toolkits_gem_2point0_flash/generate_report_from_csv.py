@@ -9,7 +9,7 @@ from crewai import Agent, Task, Crew, LLM
 from core.budget_methods import get_budgets_list
 
 from file_methods.csv_file_methods import extract_csv_content
-from file_methods.md_file_methods import find_md_file_location
+from file_methods.md_file_methods import find_md_file_location, delete_old_md_reports
 from file_methods.txt_file_methods import create_and_format_pretty_table
 
 from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transformed_table
@@ -152,6 +152,7 @@ def gen_report():
   new_md_path = os.path.join(saved_files_path, md_f_name)
 
   os.rename(curr_md_path, new_md_path)
+  delete_old_md_reports()
   git_push_md(new_md_path)
 
   return new_md_path
