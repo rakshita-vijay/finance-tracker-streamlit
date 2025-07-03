@@ -11,12 +11,10 @@ def find_md_file_location():
 
   return curr_md  
 
-def save_and_cleanup_md_report(md_content, md_filename="md_report.md", saved_files_dir="saved_files"):
-  for f in os.walk(saved_files_dir):
-    if f[0:9] == "md_report":
-      os.remove(f) 
-    
+def save_and_cleanup_md_report(md_content, timestamp, md_filename="md_report.md", saved_files_dir="saved_files"):
   md_path = os.path.join(saved_files_dir, md_filename)
   with open(md_path, "w") as f:
+    f.write(f"### Report Generated On: {str(timestamp)}") 
+    f.write(" \n\n--- \n")
     f.write(md_content) 
   return md_path
