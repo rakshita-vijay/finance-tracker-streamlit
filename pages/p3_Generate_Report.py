@@ -5,6 +5,7 @@ def generate_report_button():
     st.page_link("pages/p3_Generate_Report.py", label="📝 Generate Report") 
 
 st.header("📝 Generate AI Report")
+st.divider()
 if st.button("Generate Report"):
     md_path = gen_report()
     st.success("Report generated!")
