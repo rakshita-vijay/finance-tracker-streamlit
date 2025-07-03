@@ -2,6 +2,9 @@ import streamlit as st
 from core.budget_methods import get_budgets_list, displayBudget
 from file_methods.csv_file_methods import extract_csv_content
 
+def view_spending_button():
+    st.page_link("pages/p2_View_Spending.py", label="📊 View Spending")
+
 def view_spending_page():
     st.header("📊 View Spending")
     st.divider()
