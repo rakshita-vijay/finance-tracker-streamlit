@@ -20,6 +20,10 @@ def delete_zip_files():
         os.remove(os.path.join(folders, file))
   # print("Zip files deleted from repo.")
 
+def cleanup_pycache_and_temp_files():
+  delete_pychache()
+  delete_zip_files()
+  
 def find_downloads_folder():
   downloads_path = os.path.join(os.path.expanduser("~"), "Downloads")
   if os.path.isdir(downloads_path):
@@ -142,7 +146,7 @@ def download_file(file_to_download = None):
     print(f"\nDownload of file: {only_file_name} complete! Check your downloads folder :)")
 
   # deletion of zip files
-  delete_zip_files()
+  cleanup_pycache_and_temp_files()
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
@@ -152,7 +156,7 @@ if __name__ == "__main__":
       download_file(sys.argv[1])
   else:
     download_file()
-  delete_pychache()
+  cleanup_pycache_and_temp_files()
 
   # line_demarcator = "\n{}\n".format("~" * 120)
   # download_file()
