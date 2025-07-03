@@ -1,7 +1,5 @@
 import streamlit as st
-from file_methods.csv_file_methods import add_to_csv
-from file_methods.txt_file_methods import generate_txt_from_csv 
-
+from file_methods.csv_file_methods import add_to_csv 
 from file_methods.txt_file_methods import update_txt_file 
 
 def add_transactions_button():
