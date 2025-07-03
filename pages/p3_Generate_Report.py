@@ -36,3 +36,4 @@ if os.path.isfile(md_path):
             file_name=os.path.basename(md_path),
             mime="text/markdown"
         ) 
+    st.success(f"\nDownload of file: {only_file_name} complete! Check your downloads folder :)") 
