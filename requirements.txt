@@ -2,5 +2,5 @@ crewai
 prettytable
 fpdf
 pypdf
-streamlit>=1.30.0
+streamlit>=1.30
 streamlit-option-menu 
