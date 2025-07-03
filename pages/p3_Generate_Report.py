@@ -1,3 +1,4 @@
+import time
 import streamlit as st
 from crewai_toolkits_gem_2point0_flash.generate_report_from_csv import gen_report 
  
@@ -12,7 +13,8 @@ if st.button("Generate Report"):
     st.divider()
     with st.spinner("Generating your report..."): 
         try:
-            md_path = gen_report()  
+            md_path = gen_report()
+            time.sleep(3)
             
             # st.success("Report generated!")
             # st.write(f"Markdown report saved at: `{md_path}`")
