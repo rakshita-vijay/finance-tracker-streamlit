@@ -10,3 +10,12 @@ def find_md_file_location():
         break
 
   return curr_md  
+
+def save_and_cleanup_md_report(md_content, md_filename="md_report.md", saved_files_dir="saved_files"):
+  for f in glob.glob(os.path.join(saved_files_dir, "*.md")):
+    os.remove(f) 
+    
+  md_path = os.path.join(saved_files_dir, md_filename)
+  with open(md_path, "w") as f:
+    f.write(md_content) 
+  return md_path
