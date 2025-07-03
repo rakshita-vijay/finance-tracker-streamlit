@@ -10,10 +10,9 @@ st.header("📝 Generate AI Report")
 st.divider()
 
 if st.button("Generate Report"): 
+    st.divider()
     with st.spinner("Generating your report..."):
-        md_path = gen_report()
-        
-        st.divider()
+        md_path = gen_report() 
         
         st.success("Report generated!")
         st.write(f"Markdown report saved at: `{md_path}`")
