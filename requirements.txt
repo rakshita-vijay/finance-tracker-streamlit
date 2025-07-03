@@ -1,6 +1,7 @@
-crewai[lite]
+crewai 
 prettytable
 fpdf
 pypdf
 streamlit>=1.25
 streamlit-option-menu 
+sqlite3 >= 3.35.0
