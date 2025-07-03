@@ -20,5 +20,4 @@ if st.button("Generate Report"):
         st.divider()
         
         with open(md_path, "r") as f:
-            st.markdown(f.read()) 
-        git_push_md()
+            st.markdown(f.read())  
