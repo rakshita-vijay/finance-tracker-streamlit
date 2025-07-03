@@ -7,8 +7,11 @@ def view_spending_button():
 
 def view_spending_page():
     st.header("📊 View Spending")
-
+    
+    st.divider()
     view_spend = st.button("View Spending")
+    st.divider()
+    
     if view_spend:
         budgets = get_budgets_list()
         st.write("**Current Budgets:**")
