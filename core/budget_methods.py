@@ -28,32 +28,35 @@ def changeBudget():
   
   budget_type = st.selectbox(
     "Do you want to enter a monthly or yearly budget?",
-    options=["monthly", "yearly"] 
+    options=["monthly", "yearly", "NONE"],
+    index = None
+    # accept_new_options=False
   )
  
-  if budget_type == "monthly":
-    bujjet = int(((get_budgets_list()[0]).split(" = "))[1])
-  else:
-    bujjet = int(((get_budgets_list()[1]).split(" = "))[1])
-
-  st.write("")
-  budget = st.number_input(f"Enter your {budget_type} budget: ", bujjet) 
- 
-  if budget_type == "monthly":
-    monthly_budget = budget
-    yearly_budget = math.floor(budget * 12)
-  else:
-    monthly_budget = math.floor(budget / 12)
-    yearly_budget = budget
-
-  bl = f"monthly = {monthly_budget}, yearly = {yearly_budget}".split(', ')
-  displayBudget(bl)
-
-  f = open("core/default_budget.txt", 'w')
-  f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
-  f.close()
+  if budget_type != "NONE": 
+    if budget_type == "monthly":
+      bujjet = int(((get_budgets_list()[0]).split(" = "))[1])
+    else:
+      bujjet = int(((get_budgets_list()[1]).split(" = "))[1])
   
-  git_push_txt()
+    st.write("")
+    budget = st.number_input(f"Enter your {budget_type} budget: ") 
+   
+    if budget_type == "monthly":
+      monthly_budget = budget
+      yearly_budget = math.floor(budget * 12)
+    else:
+      monthly_budget = math.floor(budget / 12)
+      yearly_budget = budget
+  
+    bl = f"monthly = {monthly_budget}, yearly = {yearly_budget}".split(', ')
+    displayBudget(bl)
+  
+    f = open("core/default_budget.txt", 'w')
+    f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
+    f.close()
+    
+    git_push_txt()
 
 '''
 def calc_percent(prev_months_expenditure, curr_month_expenditure, bud_lst):
