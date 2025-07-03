@@ -21,9 +21,13 @@ def add_transactions_button():
     
 def add_transactions_page():
     st.header("➕ Add Transaction(s)")
+    
+    st.divider() 
     num = st.number_input("How many transactions to add?", min_value=1, max_value=20, value=1)
     all_trans = []
     errors = []
+
+    st.divider()
 
     for i in range(num):
         st.subheader(f"Transaction #{i+1}")
