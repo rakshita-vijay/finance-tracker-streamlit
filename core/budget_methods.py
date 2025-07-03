@@ -33,7 +33,7 @@ def changeBudget():
     # accept_new_options=False
   )
  
-  if budget_type != "NONE": 
+  if budget_type != "NONE" and budget_type != None: 
     if budget_type == "monthly":
       bujjet = int(((get_budgets_list()[0]).split(" = "))[1])
     else:
