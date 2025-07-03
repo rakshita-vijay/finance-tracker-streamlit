@@ -4,6 +4,7 @@ from file_methods.csv_file_methods import extract_csv_content
 
 def view_spending_page():
     st.header("📊 View Spending")
+    st.divider()
 
     # Get budgets as a list of strings like ['monthly = 5000', 'yearly = 60000']
     budget_list = get_budgets_list()
@@ -19,7 +20,9 @@ def view_spending_page():
     except StopIteration:
         st.warning("Budget info not found or malformed.")
 
-    # Display transactions
+    st.divider()
+    
+    # Display transactions 
     st.subheader("Transactions to Date")
     csv_content = extract_csv_content()
     if not csv_content:
