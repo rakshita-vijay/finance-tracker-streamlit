@@ -217,6 +217,7 @@ def gen_report():
   new_md_path = os.path.join(saved_files_path, md_f_name)
 
   os.rename(curr_md_path, new_md_path)
+  git_push_md()
 
   print(".md file (with updated timestamp) saved to the 'saved_files' folder! :)")
 
