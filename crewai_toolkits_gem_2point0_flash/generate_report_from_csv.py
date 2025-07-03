@@ -153,8 +153,6 @@ def gen_report():
 
   os.rename(curr_md_path, new_md_path)
   git_push_md(new_md_path)
- 
-  st.success(f".md file (with updated timestamp) saved to the 'saved_files' folder and pushed to GitHub :)") 
 
   return new_md_path
 
