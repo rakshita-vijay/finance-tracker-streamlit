@@ -2,7 +2,7 @@ import streamlit as st
 from file_methods.csv_file_methods import find_csv_file_location
 
 def wipe_transactions_button():
-    st.page_link("pages/6_Wipe_Transactions.py", label="🗑️ Wipe Transactions")
+    st.page_link("pages/p6_Wipe_Transactions.py", label="🗑️ Wipe Transactions")
 
 st.header("🗑️ Wipe Transactions")
 if st.button("Wipe All Transactions"):
