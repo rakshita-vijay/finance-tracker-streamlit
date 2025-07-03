@@ -110,8 +110,7 @@ def gen_report():
     verbose = True,
     chat_llm = llm
   )
- 
-  st.info("Starting the report generation...") 
+  
   for attempt in range(5): 
       n = str(attempt+1).zfill(2) 
       try: 
