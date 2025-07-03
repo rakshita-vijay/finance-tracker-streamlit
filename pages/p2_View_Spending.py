@@ -13,3 +13,5 @@ def view_spending_page():
   st.write("---")
   st.write("**Transactions to Date:**")
   display_csv_content() 
+
+view_spending_page()
