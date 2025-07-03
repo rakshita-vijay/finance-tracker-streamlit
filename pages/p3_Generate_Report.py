@@ -16,9 +16,9 @@ if st.button("Generate Report"):
             md_path = gen_report() 
             git_push_md(md_path)
             
-            st.success("Report generated!")
-            st.write(f"Markdown report saved at: `{md_path}`")
-            st.divider()
+            # st.success("Report generated!")
+            # st.write(f"Markdown report saved at: `{md_path}`")
+            # st.divider()
             
             with open(md_path, "r") as f:
                 st.markdown(f.read())
