@@ -1,4 +1,4 @@
-crewai
+crewai[lite]
 prettytable
 fpdf
 pypdf
