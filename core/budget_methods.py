@@ -32,9 +32,9 @@ def changeBudget():
   )
  
   if budget_type == "monthly":
-    bujjet = ((get_budgets_list()[0]).split(" = "))[1]
+    bujjet = int(((get_budgets_list()[0]).split(" = "))[1])
   else:
-    bujjet = ((get_budgets_list()[1]).split(" = "))[1] 
+    bujjet = int(((get_budgets_list()[1]).split(" = "))[1])
 
   st.write("")
   budget = st.number_input(f"Enter your {budget_type} budget: ", bujjet) 
