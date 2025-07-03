@@ -2,6 +2,8 @@ import os, sys, re, math, datetime
 
 from file_methods.csv_file_methods import extract_csv_content
 from file_methods.txt_file_methods import find_txt_file_location
+ 
+from utils.git_utils import git_push_txt
 
 def get_budgets_list():
   with open("core/default_budget.txt", 'r') as f:
@@ -14,30 +16,30 @@ def displayBudget(budget_list):
   mb = re.search(r'monthly = (\d+)', budget_list[0].strip()).group(1)
   yb = re.search(r'yearly = (\d+)', budget_list[1].strip()).group(1)
 
-  print("{} budget = {}".format('monthly'.title(), mb))
+  st.write("{} budget = {}".format('monthly'.title(), mb))
 
   budget_type = 'YEARLY'
-  print("{bt} budget = {b}".format(bt = budget_type.title(), b = yb))
+  st.write("{bt} budget = {b}".format(bt = budget_type.title(), b = yb))
 
 def changeBudget():
-  print()
+  st.write()
 
-  m_or_y_budget = input("Do you want to enter a monthly or yearly budget? Enter 'm' for monthly and 'y' for yearly: ")
+  m_or_y_budget = text_input("Do you want to enter a monthly or yearly budget? Enter 'm' for monthly and 'y' for yearly: ")
   while (m_or_y_budget.lower()[0] != 'm' and m_or_y_budget.lower()[0] != 'y' ):
-    m_or_y_budget = input("Enter a valid budget type - 'm' for monthly and 'y' for yearly: ")
+    m_or_y_budget = text_input("Enter a valid budget type - 'm' for monthly and 'y' for yearly: ")
 
   budget_type = "monthly" if m_or_y_budget.lower()[0] == 'm' else "yearly"
 
-  print()
+  st.write()
 
   repeat = 'yes'
   while repeat == 'yes' or budget < 0:
     try:
-      budget = int(input(f"Enter your {budget_type} budget: "))
+      budget = number_input(f"Enter your {budget_type} budget: ")
       repeat = 'no'
     except ValueError as ve:
       repeat = 'yes'
-      print("\nInvalid input. Please enter a valid number.")
+      st.error("\nInvalid input. Please enter a valid number.")
 
   if budget_type == "monthly":
     monthly_budget = budget
@@ -52,6 +54,8 @@ def changeBudget():
   f = open("/Users/rakshita/dev/rakshita/finance-tracker/core/default_budget.txt", 'w')
   f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
   f.close()
+  
+  git_push_txt()
 
 '''
 def calc_percent(prev_months_expenditure, curr_month_expenditure, bud_lst):
@@ -68,7 +72,7 @@ def plan_b(m_or_y):
   else:
     focus = "monthly AND yearly"
 
-  print(f"Your {focus} budget is exceed")
+  st.warning(f"Your {focus} budget has exceeded")
 
 def compare_with_budget():
   csv_content = extract_csv_content()
@@ -94,8 +98,8 @@ def compare_with_budget():
   bud_lst = get_budgets_list()
 
   m_percent, y_percent = calc_percent(prev_months_expenditure, curr_month_expenditure, bud_lst)
-  print("% of Monthly budget used: {}%".format(m_percent))
-  print("% of Yearly budget used: {}%".format(y_percent))
+  st.write("% of Monthly budget used: {}%".format(m_percent))
+  st.write("% of Yearly budget used: {}%".format(y_percent))
 
   if m_percent > 100.00 and y_percent < 100.00:
     plan_b("m")
@@ -104,7 +108,7 @@ def compare_with_budget():
   elif m_percent > 100.00 and y_percent > 100.00:
     plan_b("m, y")
   else:
-    print("You are going great! Expenses are under this month's budget, keep up the good work! :)")
+    st.write("You are going great! Expenses are under this month's budget, keep up the good work! :)")
 '''
 
   # if it exceeds this month's budget, then i should ask user whether they want tto cut it completely form the next month's budget, or piecemeal througout the months left in the year
