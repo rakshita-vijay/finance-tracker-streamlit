@@ -1,6 +1,7 @@
 import os
 import git
 import streamlit as st
+from file_methods.csv_file_methods import find_csv_file_location
 
 def setup_git_repo():
     try:
@@ -14,7 +15,7 @@ def setup_git_repo():
         st.error("Not in a Git repository. Make sure you're running from your repo directory.")
         return None
 
-def git_push_csv(csv_relative_path="saved_files/your_csv_file.csv", commit_message="Update transactions via Streamlit"):
+def git_push_csv(csv_relative_path=find_csv_file_location(), commit_message="Update transactions via Streamlit"):
     repo = setup_git_repo()
     if repo is None:
         return False, "Git repo not found."
