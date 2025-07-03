@@ -10,7 +10,7 @@ def delete_pychache():
         try:
           shutil.rmtree(pycache_path)
         except Exception as e:
-          print(f"Error deleting {pycache_path}: {e}")
+          st.warning(f"Error deleting {pycache_path}: {e}")
 
 def delete_zip_files():
   curr_dir = os.getcwd()
@@ -18,7 +18,7 @@ def delete_zip_files():
     for file in files:
       if re.search(r'^zippy_', file):
         os.remove(os.path.join(folders, file))
-  # print("Zip files deleted from repo.")
+  # st.success("Zip files deleted from repo.")
 
 def cleanup_pycache_and_temp_files():
   delete_pychache()
@@ -55,16 +55,14 @@ def download_all_files_flat_to_downloads():
   with zipfile.ZipFile(zipper_file_name, 'r') as unzippy:
     unzippy.extractall(path=downloads_path)
 
-  print(f"\nDownload of file: {zipper_file_name} complete! Check your downloads folder :)")
+  st.success(f"\nDownload of file: {zipper_file_name} complete! Check your downloads folder :)")
 
   # Step 3: Delete the zip file from the repo
   delete_zip_files()
 
-def download_file(file_to_download = None):
-  # print("file_to_download: ", file_to_download)
-
+def download_file(file_to_download = None): 
   if file_to_download == None:
-    print("Nothing has been passed into the file_to_download variable. \nThus, downloading csv file :)")
+    st.info("Nothing has been passed into the file_to_download variable. \nThus, downloading csv file :)")
     file_to_download = find_csv_file_location()
     only_file_name = (((file_to_download.strip('C:')).split('/')[-1]).split('\\')[-1]).split('\\\\')[-1]
     extension = 'csv'
@@ -78,29 +76,28 @@ def download_file(file_to_download = None):
     for folders, _, files in os.walk(curr_dir):
       for file in files:
         if file == only_file_name:
-          exists = True
-          # print("FILE FOUND!")
+          exists = True 
           break
       if exists == True:
         break
 
     if exists == False:
-      print("\nCannot download file as it doesn't exist :(")
-      print("Thus, downloading csv file :)")
+      st.info("\nCannot download file as it doesn't exist :(")
+      st.info("Thus, downloading csv file :)")
       only_file_name = find_csv_file_location()
       extension = 'csv'
 
     try:
       extension = re.search(r'\.([^.]+)$', only_file_name).group(1)
     except:
-      print("Cannot download file as it is not a csv, py, or txt :(")
-      print("Thus, downloading csv file :)")
+      st.info("Cannot download file as it is not a csv, py, or txt :(")
+      st.info("Thus, downloading csv file :)")
       only_file_name = find_csv_file_location()
       extension = 'csv'
 
   downloads_path = find_downloads_folder()
 
-  print(f"\nDownloading .{extension} file now...")
+  st.info(f"\nDownloading .{extension} file now...")
 
   todai = datetime.datetime.today()
   rn = f"{todai.day}-{todai.month}-{todai.year}_{todai.hour}-{todai.minute}-{todai.second}"
@@ -120,7 +117,7 @@ def download_file(file_to_download = None):
     csv_writer.writerows(data_lines)
     f.close()
 
-    print(f"\nDownload of file: {file_name_in_downloads} complete! Check your downloads folder :)")
+    st.success(f"\nDownload of file: {file_name_in_downloads} complete! Check your downloads folder :)")
 
   else: # if extension == 'py' or 'txt'
     zipper_file_name = f"zippy_{rn}.zip"
@@ -143,7 +140,7 @@ def download_file(file_to_download = None):
     unzippy.extractall(path = downloads_path)
     unzippy.close()
 
-    print(f"\nDownload of file: {only_file_name} complete! Check your downloads folder :)")
+    st.success(f"\nDownload of file: {only_file_name} complete! Check your downloads folder :)")
 
   # deletion of zip files
   cleanup_pycache_and_temp_files()
