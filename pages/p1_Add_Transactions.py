@@ -24,7 +24,7 @@ def add_transactions_page():
 
             if submitted:
                 # Validation
-                if not date.strip():
+                if not date:
                     errors.append(f"Transaction #{i+1}: Date is required.")
                 if not desc.strip():
                     errors.append(f"Transaction #{i+1}: Description is required.")
