@@ -11,16 +11,15 @@ st.divider()
 
 if st.button("Generate Report"): 
     st.divider()
-    with st.spinner("Generating your report..."):
-        if st.button("Generate Report"):
-            try:
-                md_path = gen_report() 
-                
-                st.success("Report generated!")
-                st.write(f"Markdown report saved at: `{md_path}`")
-                st.divider()
-                
-                with open(md_path, "r") as f:
-                    st.markdown(f.read())
-            except Exception as e:
-                st.error(f"Error during report generation: {e}") 
+    with st.spinner("Generating your report..."): 
+        try:
+            md_path = gen_report() 
+            
+            st.success("Report generated!")
+            st.write(f"Markdown report saved at: `{md_path}`")
+            st.divider()
+            
+            with open(md_path, "r") as f:
+                st.markdown(f.read())
+        except Exception as e:
+            st.error(f"Error during report generation: {e}") 
