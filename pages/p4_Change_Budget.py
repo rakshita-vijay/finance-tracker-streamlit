@@ -8,14 +8,10 @@ def change_budget_page():
     st.header("💰 Change Budget") 
     st.divider()
     budget_list = get_budgets_list()
-    st.subheader("Current Budgets")
-    displayBudget(budget_list) 
+    st.subheader("Current Budgets") 
  
     try:
-        monthly = next(s for s in budget_list if 'monthly' in s.lower())
-        yearly = next(s for s in budget_list if 'yearly' in s.lower())
-        st.write(f"**{monthly.title()}**")
-        st.write(f"**{yearly.title()}**")
+        displayBudget(budget_list) 
     except StopIteration:
         st.warning("Budget info not found or malformed.") 
         
