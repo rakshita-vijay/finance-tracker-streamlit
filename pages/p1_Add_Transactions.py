@@ -55,7 +55,7 @@ def add_transactions_page():
         add_to_csv(all_trans)
         update_txt_file()
         # Push to GitHub
-        push_success, push_msg = git_push_csv(csv_relative_path="saved_files/your_csv_file.csv")
+        push_success, push_msg = git_push_csv(find_csv_file_location())
         if push_success:
             st.success("All files updated after adding transactions!")
         else:
