@@ -1,6 +1,9 @@
 import streamlit as st
 from download_to_device import download_file, download_all_files_flat_to_downloads
 
+def download_files_button():
+    st.page_link("pages/5_Download_Files.py", label="⬇️ Download Files")
+
 st.header("⬇️ Download Files")
 file_type = st.selectbox("Select file to download", ["CSV", "TXT", "PDF", "MD", "All"])
 if st.button("Download"):
