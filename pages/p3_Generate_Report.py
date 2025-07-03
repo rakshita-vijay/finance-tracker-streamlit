@@ -13,6 +13,8 @@ st.header("📝 Generate AI Report")
 
 st.divider()
 
+md_path = ""
+
 if st.button("Generate Report"): 
     st.divider()
     with st.spinner("Generating your report..."): 
