@@ -30,18 +30,15 @@ def changeBudget():
     "Do you want to enter a monthly or yearly budget?",
     options=["monthly", "yearly"] 
   )
+ 
+  if budget_type == "monthly":
+    bujjet = ((get_budgets_list()[0]).split(" = "))[1]
+  else:
+    bujjet = ((get_budgets_list()[1]).split(" = "))[1] 
 
   st.write("")
-
-  repeat = 'yes'
-  while repeat == 'yes' or budget < 0:
-    try:
-      budget = st.number_input(f"Enter your {budget_type} budget: ")
-      repeat = 'no'
-    except ValueError as ve:
-      repeat = 'yes'
-      st.error("\nInvalid input. Please enter a valid number.")
-
+  budget = st.number_input(f"Enter your {budget_type} budget: ", bujjet) 
+ 
   if budget_type == "monthly":
     monthly_budget = budget
     yearly_budget = math.floor(budget * 12)
