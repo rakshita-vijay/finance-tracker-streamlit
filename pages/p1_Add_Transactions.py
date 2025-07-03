@@ -1,6 +1,7 @@
 import streamlit as st
 from file_methods.csv_file_methods import add_to_csv 
 from file_methods.txt_file_methods import update_txt_file 
+from utils.git_utils import git_push_csv
 
 def setup_git_repo():
     try:
@@ -48,12 +49,16 @@ def add_transactions_page():
                         st.error(err)
                 else:
                     all_trans.append([None, date, desc, amt, pay_method, status, notes])
-                    st.success(f"Transaction #{i+1} added!") 
+                    st.success(f"Transaction #{i+1} added!")  
 
     if all_trans:
         add_to_csv(all_trans)
-        # Auto-update TXT, PDF, MD after CSV update 
-        update_txt_file() 
-        st.success("All files updated after adding transactions.")
+        update_txt_file()
+        # Push to GitHub
+        push_success, push_msg = git_push_csv(csv_relative_path="saved_files/your_csv_file.csv")
+        if push_success:
+            st.success("All files updated after adding transactions!")
+        else:
+            st.warning(push_msg)
          
 add_transactions_page() 
