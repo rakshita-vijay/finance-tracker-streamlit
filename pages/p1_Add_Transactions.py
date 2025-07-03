@@ -1,5 +1,5 @@
 import streamlit as st
-from file_methods.csv_file_methods import add_to_csv 
+from file_methods.csv_file_methods import add_to_csv, find_csv_file_location
 from file_methods.txt_file_methods import update_txt_file 
 from utils.git_utils import git_push_csv
 
@@ -53,7 +53,7 @@ def add_transactions_page():
 
     if all_trans:
         add_to_csv(all_trans)
-        update_txt_file()
+        update_txt_file(find_csv_file_location())
         # Push to GitHub
         push_success, push_msg = git_push_csv(csv_relative_path="saved_files/your_csv_file.csv")
         if push_success:
