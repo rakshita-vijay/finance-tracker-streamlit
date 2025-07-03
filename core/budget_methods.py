@@ -24,15 +24,13 @@ def displayBudget(budget_list):
   st.write("{bt} budget = {b}".format(bt = budget_type.title(), b = yb))
 
 def changeBudget():
-  st.write()
+  st.write("")
+  
+  budget_type = st.selectbox(
+    "Do you want to enter a monthly or yearly budget?",
+    options=["monthly", "yearly"] 
 
-  m_or_y_budget = st.text_input("Do you want to enter a monthly or yearly budget? Enter 'm' for monthly and 'y' for yearly: ")
-  while (m_or_y_budget.lower()[0] != 'm' and m_or_y_budget.lower()[0] != 'y' ):
-    m_or_y_budget = st.text_input("Enter a valid budget type - 'm' for monthly and 'y' for yearly: ")
-
-  budget_type = "monthly" if m_or_y_budget.lower()[0] == 'm' else "yearly"
-
-  st.write()
+  st.write("")
 
   repeat = 'yes'
   while repeat == 'yes' or budget < 0:
