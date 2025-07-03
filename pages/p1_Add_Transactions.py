@@ -47,6 +47,7 @@ def add_transactions_page():
         generate_md_report_from_csv()
         st.success("All files updated after adding transactions.")
 
+add_transactions_page()
 
 '''
 import streamlit as st
