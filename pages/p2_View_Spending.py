@@ -8,7 +8,7 @@ def view_spending_button():
 def view_spending_page():
     st.header("📊 View Spending")
 
-    view_spend = st.form_submit_button("View Spending")
+    view_spend = st.button("View Spending")
     if view_spend:
         budgets = get_budgets_list()
         st.write("**Current Budgets:**")
