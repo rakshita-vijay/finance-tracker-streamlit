@@ -3,6 +3,7 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
 
 import os, sys, datetime, time
+import streamlit as st
 from crewai import Agent, Task, Crew, LLM
 
 from core.budget_methods import get_budgets_list
@@ -15,11 +16,12 @@ from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transfor
 
 from utils.git_utils import git_push_md
 
-def gen_report():
-  GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
-  if not GOOGLE_API_KEY:
-    raise ValueError("\nGOOGLE_API_KEY environment variable not set. \nPlease set it as a secret in your GitHub repository. \nIf in command line/terminal, run the command: export GOOGLE_API_KEY='YOUR_API_KEY' ")
-
+def gen_report(): 
+    GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY") 
+    if not GOOGLE_API_KEY:
+        st.error("\nGOOGLE_API_KEY environment variable not set. \nPlease set it as a secret in your GitHub repository. \nIf in command line/terminal, run the command: export GOOGLE_API_KEY='YOUR_API_KEY' ")
+        st.stop() 
+        
   llm = LLM(
     model="gemini/gemini-2.0-flash",
     temperature=0.5,
