@@ -3,5 +3,4 @@ prettytable
 fpdf
 pypdf
 streamlit>=1.30
-streamlit-option-menu
-chromadb==0.4.22
+streamlit-option-menu 
