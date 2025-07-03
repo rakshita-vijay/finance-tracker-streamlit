@@ -22,11 +22,11 @@ def gen_report():
         st.error("\nGOOGLE_API_KEY environment variable not set. \nPlease set it as a secret in your GitHub repository. \nIf in command line/terminal, run the command: export GOOGLE_API_KEY='YOUR_API_KEY' ")
         st.stop() 
         
-  llm = LLM(
-    model="gemini/gemini-2.0-flash",
-    temperature=0.5,
-    api_key=GOOGLE_API_KEY
-  ) 
+    llm = LLM(
+        model="gemini/gemini-2.0-flash",
+        temperature=0.5,
+        api_key=GOOGLE_API_KEY
+    ) 
 
   analyser = Agent(
     role = "Transaction Intelligence Analyst",
