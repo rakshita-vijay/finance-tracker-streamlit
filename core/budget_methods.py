@@ -49,7 +49,7 @@ def changeBudget():
   bl = f"monthly = {monthly_budget}, yearly = {yearly_budget}".split(', ')
   displayBudget(bl)
 
-  f = open("/Users/rakshita/dev/rakshita/finance-tracker/core/default_budget.txt", 'w')
+  f = open("core/default_budget.txt", 'w')
   f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
   f.close()
   
