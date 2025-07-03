@@ -18,12 +18,11 @@ def change_budget_page():
     st.divider()
         
     if st.button("Change Budget"):
-        changeBudget()
-        
-        st.success("Budget updated!")
-        
-        st.subheader("Updated Budgets")
-        budget_list = get_budgets_list()
-        displayBudget(budget_list)
+        if changeBudget(): 
+            st.success("Budget updated!")
+            
+            st.subheader("Updated Budgets")
+            budget_list = get_budgets_list()
+            displayBudget(budget_list)
 
 change_budget_page() 
