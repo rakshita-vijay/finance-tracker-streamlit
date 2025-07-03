@@ -13,8 +13,7 @@ if st.button("Generate Report"):
     st.divider()
     with st.spinner("Generating your report..."): 
         try:
-            md_path = gen_report() 
-            git_push_md(md_path)
+            md_path = gen_report()  
             
             # st.success("Report generated!")
             # st.write(f"Markdown report saved at: `{md_path}`")
