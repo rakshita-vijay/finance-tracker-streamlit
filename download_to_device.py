@@ -67,8 +67,8 @@ def download_file(file_to_download=None):
             mime='text/csv'
         )
         return clicked
-    # TXT, PY, MD: direct download
-    elif extension in ['.txt', '.py', '.md', '.pdf']:
+    # TXT, PY, PDF, MD: direct download
+    elif extension in ['.txt', '.py', '.pdf', '.md']:
         with open(file_to_download, "rb") as f:
             mime_type = 'application/pdf' if extension == '.pdf' else 'text/plain'
             clicked = st.download_button(
