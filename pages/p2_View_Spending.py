@@ -2,6 +2,13 @@ import streamlit as st
 from core.budget_methods import get_budgets_list, displayBudget
 from file_methods.csv_file_methods import extract_csv_content
 
+st.set_page_config(
+    page_title="View Spending",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="expanded"
+) 
+
 def view_spending_button():
     st.page_link("pages/p2_View_Spending.py", label="📊 View Spending")
 
