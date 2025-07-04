@@ -53,7 +53,7 @@ def changeBudget():
          bl = f"monthly = {monthly_budget}, yearly = {yearly_budget}".split(', ') 
          with open("core/default_budget.txt", 'w') as f:
             f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
-         git_push_txt()
+         git_push_txt("core/default_budget.txt", "Update default budgets via Streamlit")
          return True
    return False 
 
