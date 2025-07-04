@@ -23,8 +23,9 @@ def download_files_page():
     choice = st.selectbox("Select file to download", options)
  
     if choice == "All Files (ZIP)":
-        download_all_files_flat_to_downloads()
-        st.success("All files downloaded to your Downloads folder.")
+        clicked = download_all_files_flat_to_downloads()
+        if clicked: 
+            st.success("All files downloaded to your Downloads folder.")
     else:
         file_to_download = file_map.get(choice) 
         if file_to_download:
