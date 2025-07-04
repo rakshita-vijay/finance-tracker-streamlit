@@ -27,7 +27,7 @@ if st.button("Generate Report"):
         except Exception as e:
             st.error(f"Error during report generation: {e}") 
             
-git_push_md()
+git_push_md(md_path)
 st.divider()            
 if os.path.isfile(md_path): 
     with open(md_path, "rb") as f:
