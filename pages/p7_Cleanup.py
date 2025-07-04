@@ -13,6 +13,7 @@ def cleanup_page_button():
   
 def cleanup_page():
     st.header("🧹 Cleanup Temporary Files")
+    st.divider()
     if st.button("Run Cleanup"):
         cleanup_pycache_and_temp_files()
         st.success("Cleanup complete!")
