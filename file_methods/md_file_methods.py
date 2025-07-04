@@ -17,4 +17,6 @@ def save_and_cleanup_md_report(md_content, timestamp, md_filename="md_report.md"
     f.write(f"### Report Generated On: {str(timestamp)}") 
     f.write(" \n\n--- \n")
     f.write(md_content) 
-  return md_path
+    
+  curr_md_path = ''.join(os.path.join(os.getcwd(), md_path).split('./'))
+  return curr_md_path
