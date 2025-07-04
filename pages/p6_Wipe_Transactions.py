@@ -2,6 +2,13 @@ import streamlit as st
 from file_methods.csv_file_methods import find_csv_file_location
 from utils.git_utils import git_push_csv
 
+st.set_page_config(
+    page_title="Wipe Transactions",
+    page_icon="🗑️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 def wipe_transactions_button():
     st.page_link("pages/p6_Wipe_Transactions.py", label="🗑️ Wipe Transactions") 
     
