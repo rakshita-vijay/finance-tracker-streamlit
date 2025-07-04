@@ -34,6 +34,5 @@ if os.path.isfile(md_path):
             label="Download Report",
             data=f,
             file_name=os.path.basename(md_path),
-            mime="text/markdown",
-            on_click="ignore"):
+            mime="text/markdown"):
             st.success(f"\nDownload of file: {os.path.basename(md_path)} complete! Check your downloads folder :)")  
