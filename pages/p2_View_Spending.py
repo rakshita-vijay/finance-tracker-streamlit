@@ -12,14 +12,10 @@ def view_spending_page():
     # Get budgets as a list of strings like ['monthly = 5000', 'yearly = 60000']
     budget_list = get_budgets_list()
     st.subheader("Current Budgets")
-    displayBudget(budget_list)  # This prints budgets to console; let's also display in Streamlit
-
-    # Additionally, display budgets in Streamlit
+    displayBudget(budget_list)  
+ 
     try:
-        monthly = next(s for s in budget_list if 'monthly' in s.lower())
-        yearly = next(s for s in budget_list if 'yearly' in s.lower())
-        st.write(f"**{monthly.title()}**")
-        st.write(f"**{yearly.title()}**")
+        displayBudget(budget_list)  
     except StopIteration:
         st.warning("Budget info not found or malformed.")
 
