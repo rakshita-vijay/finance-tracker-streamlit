@@ -5,24 +5,19 @@ def change_budget_button():
     st.page_link("pages/p4_Change_Budget.py", label="💰 Change Budget")
 
 def change_budget_page():
-    st.header("💰 Change Budget") 
+    st.header("💰 Change Budget")
     st.divider()
     budget_list = get_budgets_list()
-    st.subheader("Current Budgets") 
- 
+    st.subheader("Current Budgets")
     try:
-        displayBudget(budget_list) 
+        displayBudget(budget_list)
     except StopIteration:
-        st.warning("Budget info not found or malformed.") 
-        
+        st.warning("Budget info not found or malformed.")
     st.divider()
-        
-    if st.button("Change Budget"):
-        if changeBudget(): 
-            st.success("Budget updated!")
-            
-            st.subheader("Updated Budgets")
-            budget_list = get_budgets_list()
-            displayBudget(budget_list)
+    if changeBudget():
+        st.success("Budget updated!")
+        st.subheader("Updated Budgets")
+        budget_list = get_budgets_list()
+        displayBudget(budget_list)
 
-change_budget_page() 
+change_budget_page()
