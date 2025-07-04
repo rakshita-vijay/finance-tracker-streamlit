@@ -17,7 +17,7 @@ def setup_git_repo():
         st.error("Not in a Git repository. Make sure you're running from your repo directory.")
         return None
 
-def git_push_txt(txt_relative_path=find_txt_file_location(), commit_message="Update budgets via Streamlit"):
+def git_push_txt(txt_relative_path=find_txt_file_location(), commit_message="Update spending - txt version - via Streamlit"):
     repo = setup_git_repo()
     if repo is None:
         return False, "Git repo not found."
