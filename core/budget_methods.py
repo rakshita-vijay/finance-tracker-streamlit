@@ -54,9 +54,7 @@ def changeBudget():
       f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
       f.close()
       
-      git_push_txt()
-      return True
-  return False
+      git_push_txt() 
 
 '''
 def calc_percent(prev_months_expenditure, curr_month_expenditure, bud_lst):
