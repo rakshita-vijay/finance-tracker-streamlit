@@ -2,8 +2,12 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
 
-import os, sys, datetime, time
+import os, sys, datetime, time 
+
 import streamlit as st
+
+from zoneinfo import ZoneInfo
+
 from crewai import Agent, Task, Crew, LLM
 
 from core.budget_methods import get_budgets_list
@@ -134,7 +138,8 @@ def gen_report():
     bud_light = {"monthly" : 1000, "yearly" : 12000}
 
   res = crewww.kickoff(inputs = {"pretty_table": t_t_res, "budgets": bud_light})
-  tst = datetime.datetime.now()  
+  # tst = datetime.datetime.now()  
+  tst = datetime.datetime.now(ZoneInfo("Asia/Kolkata"))
 
   new_md_path = save_and_cleanup_md_report((res.raw.strip('```')).strip('markdown'), tst)
  
