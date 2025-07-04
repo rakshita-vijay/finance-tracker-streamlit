@@ -6,14 +6,15 @@ from file_methods.csv_file_methods import find_csv_file_location
 from file_methods.csv_file_methods import extract_csv_content
 
 def delete_pychache():
-  for root, dirs, files in os.walk(os.getcwd()):
-    for dir_name in dirs:
-      if dir_name == "__pycache__":
-        pycache_path = os.path.join(root, dir_name)
-        try:
-          shutil.rmtree(pycache_path)
-        except Exception as e:
-          st.warning(f"Error deleting {pycache_path}: {e}")
+  pass
+  # for root, dirs, files in os.walk(os.getcwd()):
+  #   for dir_name in dirs:
+  #     if dir_name == "__pycache__":
+  #       pycache_path = os.path.join(root, dir_name)
+  #       try:
+  #         shutil.rmtree(pycache_path)
+  #       except Exception as e:
+  #         st.warning(f"Error deleting {pycache_path}: {e}")
 
 def delete_zip_files():
   curr_dir = os.getcwd()
