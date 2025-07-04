@@ -35,13 +35,14 @@ def download_all_files_flat_to_downloads():
 
     # Offer the zip for download in the browser
     with open(zipper_file_name, "rb") as f:
-        st.download_button(
+        clicked = st.download_button(
             label="Download All Files as ZIP",
             data=f,
             file_name=zipper_file_name,
             mime="application/zip"
         )
     os.remove(zipper_file_name)
+    return clicked
 
 def download_file(file_to_download=None):
     if file_to_download is None:
