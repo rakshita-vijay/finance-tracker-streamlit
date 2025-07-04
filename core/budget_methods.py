@@ -28,12 +28,10 @@ def changeBudget():
   
   budget_type = st.selectbox(
     "Do you want to enter a monthly or yearly budget?",
-    options=["monthly", "yearly", "NONE"],
-    index = None 
-    # accept_new_options=False
+    options=["NONE", "monthly", "yearly"] 
   )
  
-  if budget_type != "NONE" and budget_type != None: 
+  if budget_type != "NONE": 
     budget = None
     budget = st.number_input(
       f"Enter your {budget_type} budget:",
