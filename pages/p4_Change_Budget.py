@@ -1,6 +1,13 @@
 import streamlit as st
 from core.budget_methods import changeBudget, get_budgets_list, displayBudget
 
+st.set_page_config(
+    page_title="Change Budget",
+    page_icon="💰",
+    layout="wide",
+    initial_sidebar_state="expanded"
+) 
+
 def change_budget_button():
     st.page_link("pages/p4_Change_Budget.py", label="💰 Change Budget")
 
