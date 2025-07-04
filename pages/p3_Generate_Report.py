@@ -5,6 +5,8 @@ from file_methods.md_file_methods import find_md_file_location
 from download_to_device import download_file
 
 from crewai_toolkits_gem_2point0_flash.generate_report_from_csv import gen_report 
+
+from utilsgit_utils import git_push_md
  
 def generate_report_button():
     st.page_link("pages/p3_Generate_Report.py", label="📝 Generate Report") 
@@ -25,6 +27,7 @@ if st.button("Generate Report"):
         except Exception as e:
             st.error(f"Error during report generation: {e}") 
             
+git_push_md()
 st.divider()            
 if os.path.isfile(md_path): 
     with open(md_path, "rb") as f:
