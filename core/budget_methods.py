@@ -50,8 +50,7 @@ def changeBudget():
          else:
             monthly_budget = math.floor(budget / 12)
             yearly_budget = budget
-         bl = f"monthly = {monthly_budget}, yearly = {yearly_budget}".split(', ')
-         displayBudget(bl)
+         bl = f"monthly = {monthly_budget}, yearly = {yearly_budget}".split(', ') 
          with open("core/default_budget.txt", 'w') as f:
             f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
          git_push_txt()
