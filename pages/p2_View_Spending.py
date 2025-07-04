@@ -11,8 +11,7 @@ def view_spending_page():
 
     # Get budgets as a list of strings like ['monthly = 5000', 'yearly = 60000']
     budget_list = get_budgets_list()
-    st.subheader("Current Budgets")
-    displayBudget(budget_list)  
+    st.subheader("Current Budgets") 
  
     try:
         displayBudget(budget_list)  
