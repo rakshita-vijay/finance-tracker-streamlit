@@ -9,3 +9,5 @@ def cleanup_page():
     if st.button("Run Cleanup"):
         cleanup_pycache_and_temp_files()
         st.success("Cleanup complete!")
+
+cleanup_page()
