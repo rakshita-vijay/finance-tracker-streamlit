@@ -19,9 +19,7 @@ if st.button("Generate Report"):
     st.divider()
     with st.spinner("Generating your report..."): 
         try:
-            md_path = gen_report()
-            time.sleep(3) 
-            
+            md_path = gen_report() 
             with open(md_path, "r") as f:
                 st.markdown(f.read())
         except Exception as e:
