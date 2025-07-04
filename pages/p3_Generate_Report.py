@@ -30,11 +30,10 @@ if st.button("Generate Report"):
 st.divider()            
 if os.path.isfile(md_path): 
     with open(md_path, "rb") as f:
-        st.download_button(
+        if st.download_button(
             label="Download Report",
             data=f,
             file_name=os.path.basename(md_path),
             mime="text/markdown",
-            on_click="ignore"
-        ) 
-    st.success(f"\nDownload of file: {os.path.basename(md_path)} complete! Check your downloads folder :)") 
+            on_click="ignore"):
+            st.success(f"\nDownload of file: {os.path.basename(md_path)} complete! Check your downloads folder :)")  
