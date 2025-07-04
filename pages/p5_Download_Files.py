@@ -27,8 +27,9 @@ def download_files_page():
     else:
         file_to_download = file_map.get(choice) 
         if file_to_download:
-            download_file(file_to_download)
-        st.success(f"{choice} file downloaded.") 
+            clicked = download_file(file_to_download)
+            if clicked: 
+                st.success(f"{choice} file downloaded.") 
             
     cleanup_pycache_and_temp_files() 
 
