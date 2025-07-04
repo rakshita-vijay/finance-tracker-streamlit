@@ -6,6 +6,13 @@ from file_methods.txt_file_methods import find_txt_file_location
 from file_methods.md_file_methods import find_md_file_location
 from file_methods.pdf_file_methods import find_pdf_file_location
 
+st.set_page_config(
+    page_title="Download Files",
+    page_icon="⬇️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+) 
+
 def download_files_button():
     st.page_link("pages/p5_Download_Files.py", label="⬇️ Download Files") 
 
