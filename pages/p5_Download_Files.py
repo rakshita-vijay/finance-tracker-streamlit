@@ -11,6 +11,7 @@ def download_files_button():
 
 def download_files_page():
     st.header("⬇️ Download Files")
+    st.divider()
     options = ["CSV (Transactions)", "TXT (ASCII Table)", "PDF (Report)",  "MD (Markdown Report)", "All Files (ZIP)"]
     file_map = {
         "CSV (Transactions)": find_csv_file_location(),
