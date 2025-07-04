@@ -3,6 +3,13 @@ from file_methods.csv_file_methods import add_to_csv, find_csv_file_location
 from file_methods.txt_file_methods import update_txt_file 
 from utils.git_utils import git_push_csv
 
+st.set_page_config(
+    page_title="Add Transactions",
+    page_icon="➕",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 def setup_git_repo():
     try:
         GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
