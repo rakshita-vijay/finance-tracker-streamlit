@@ -6,7 +6,7 @@ from download_to_device import download_file
 
 from crewai_toolkits_gem_2point0_flash.generate_report_from_csv import gen_report 
 
-from utilsgit_utils import git_push_md
+from utils.git_utils import git_push_md
  
 def generate_report_button():
     st.page_link("pages/p3_Generate_Report.py", label="📝 Generate Report") 
