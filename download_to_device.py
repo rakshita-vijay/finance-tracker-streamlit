@@ -68,13 +68,14 @@ def download_file(file_to_download=None):
         )
         return clicked
     # TXT, PY, MD: direct download
-    elif extension in ['.txt', '.py', '.md']:
+    elif extension in ['.txt', '.py', '.md', '.pdf']:
         with open(file_to_download, "rb") as f:
+            mime_type = 'application/pdf' if extension == '.pdf' else 'text/plain'
             clicked = st.download_button(
                 label=f"Download {extension[1:].upper()}",
                 data=f,
                 file_name=only_file_name,
-                mime='text/plain'
+                mime=mime_type
             )
         return clicked
     # Other files: zip and offer download
