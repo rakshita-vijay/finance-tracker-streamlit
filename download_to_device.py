@@ -54,42 +54,44 @@ def download_file(file_to_download=None):
     # Check if file exists
     if not os.path.isfile(file_to_download):
         st.error(f"File does not exist: {only_file_name}")
-        return
+        return False
 
     # CSV: extract content and offer as download
     if extension == '.csv':
         data_lines = extract_csv_content(file_to_download)
         csv_content = "".join(",".join(map(str, row)) + "\n" for row in data_lines)
-        st.download_button(
+        clicked = st.download_button(
             label=f"Download CSV",
             data=csv_content,
             file_name=only_file_name,
             mime='text/csv'
         )
+        return clicked
     # TXT, PY, MD: direct download
     elif extension in ['.txt', '.py', '.md']:
         with open(file_to_download, "rb") as f:
-            st.download_button(
+            clicked = st.download_button(
                 label=f"Download {extension[1:].upper()}",
                 data=f,
                 file_name=only_file_name,
                 mime='text/plain'
             )
+        return clicked
     # Other files: zip and offer download
     else:
         zipper_file_name = f"zippy_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.zip"
         with zipfile.ZipFile(zipper_file_name, 'w') as zippy:
             zippy.write(file_to_download, arcname=only_file_name, compress_type=zipfile.ZIP_DEFLATED)
         with open(zipper_file_name, 'rb') as f:
-            st.download_button(
+            clicked = st.download_button(
                 label=f"Download ZIP",
                 data=f,
                 file_name=zipper_file_name,
                 mime='application/zip'
             )
         os.remove(zipper_file_name)
-
-
+        return clicked 
+        
 beeboo = '''
 
 import os, sys, re, datetime, csv, zipfile, shutil
