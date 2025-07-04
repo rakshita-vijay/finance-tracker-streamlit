@@ -21,8 +21,44 @@ def displayBudget(budget_list):
   st.write("{} budget = {}".format('monthly'.title(), mb))
 
   budget_type = 'YEARLY'
-  st.write("{bt} budget = {b}".format(bt = budget_type.title(), b = yb))
+  st.write("{bt} budget = {b}".format(bt = budget_type.title(), b = yb)) 
 
+def changeBudget():
+   with st.form("budget_form"):
+      budget_type = st.selectbox(
+         "Do you want to enter a monthly or yearly budget?",
+         options=["NONE", "monthly", "yearly"]
+      )
+      budget = None
+      if budget_type != "NONE":
+         current_budgets = get_budgets_list()
+         if budget_type == "monthly":
+            default_val = int((current_budgets[0].split(" = "))[1])
+         else:
+            default_val = int((current_budgets[1].split(" = "))[1])
+         budget = st.number_input(
+            f"Enter your {budget_type} budget:",
+            min_value=0,
+            value=default_val,
+            step=1
+         )
+      submitted = st.form_submit_button("Update Budget")
+      if submitted and budget_type != "NONE" and budget is not None:
+         if budget_type == "monthly":
+            monthly_budget = budget
+            yearly_budget = math.floor(budget * 12)
+         else:
+            monthly_budget = math.floor(budget / 12)
+            yearly_budget = budget
+         bl = f"monthly = {monthly_budget}, yearly = {yearly_budget}".split(', ')
+         displayBudget(bl)
+         with open("core/default_budget.txt", 'w') as f:
+            f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
+         git_push_txt()
+         return True
+   return False 
+
+'''
 def changeBudget():
   st.write("")
   
@@ -55,7 +91,7 @@ def changeBudget():
       f.close()
       
       git_push_txt() 
-
+'''
 '''
 def calc_percent(prev_months_expenditure, curr_month_expenditure, bud_lst):
   tot_y_exp = prev_months_expenditure + curr_month_expenditure
