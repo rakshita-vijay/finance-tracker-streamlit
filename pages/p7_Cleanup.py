@@ -1,7 +1,6 @@
 import streamlit as st
 if 'username' not in st.session_state:
-    st.warning("Please login first.")
-    st.stop()
+    st.switch_page("pages/p0_Authentication.py")
 username = st.session_state['username']
 
 from download_to_device import cleanup_pycache_and_temp_files
