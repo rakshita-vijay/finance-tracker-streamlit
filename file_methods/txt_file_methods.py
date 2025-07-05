@@ -4,7 +4,14 @@ from file_methods.csv_file_methods import find_csv_file_location
 from file_methods.pdf_file_methods import txt_to_pdf
 
 from file_methods.user_file_utils import get_user_file
+   
+import streamlit as st
 
+if 'username' not in st.session_state:
+    st.warning("Please login first.")
+    st.stop()
+username = st.session_state['username']
+   
 def find_txt_file_location(): 
   txt_path = get_user_file(username, "txt_version_of_csv_transactions", "txt")
   return txt_path 
