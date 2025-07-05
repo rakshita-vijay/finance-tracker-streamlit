@@ -1,12 +1,12 @@
 import streamlit as st
-from core.budget_methods import changeBudget, get_budgets_list, displayBudget
+from file_methods.budget_methods import changeBudget, get_budgets_list, displayBudget
 
 st.set_page_config(
     page_title="Change Budget",
     page_icon="💰",
     layout="wide",
     initial_sidebar_state="expanded"
-) 
+)
 
 with st.sidebar:
     st.markdown("## Main Menu")
@@ -17,7 +17,7 @@ with st.sidebar:
     st.page_link("pages/p4_Change_Budget.py", label="Change Budget", icon="💰")
     st.page_link("pages/p5_Download_Files.py", label="Download Files", icon="⬇️")
     st.page_link("pages/p6_Wipe_Transactions.py", label="Wipe Transactions", icon="🗑️")
-    st.page_link("pages/p7_Cleanup.py", label="Cleanup", icon="🧹")  
+    st.page_link("pages/p7_Cleanup.py", label="Cleanup", icon="🧹")
 
 def change_budget_button():
     st.page_link("pages/p4_Change_Budget.py", label="💰 Change Budget")

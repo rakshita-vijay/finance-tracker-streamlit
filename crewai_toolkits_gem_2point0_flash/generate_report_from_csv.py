@@ -1,8 +1,8 @@
 __import__('pysqlite3')
 import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-import os, sys, datetime, time 
+import os, sys, datetime, time
 
 import streamlit as st
 
@@ -10,7 +10,7 @@ from zoneinfo import ZoneInfo
 
 from crewai import Agent, Task, Crew, LLM
 
-from core.budget_methods import get_budgets_list
+from file_methods.budget_methods import get_budgets_list
 
 from file_methods.csv_file_methods import extract_csv_content
 from file_methods.md_file_methods import find_md_file_location, save_and_cleanup_md_report
@@ -20,17 +20,17 @@ from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transfor
 
 from utils.git_utils import git_push_md
 
-def gen_report(): 
-  GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY") 
+def gen_report():
+  GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
   if not GOOGLE_API_KEY:
     st.error("\nGOOGLE_API_KEY environment variable not set. \nPlease set it as a secret in your GitHub repository. \nIf in command line/terminal, run the command: export GOOGLE_API_KEY='YOUR_API_KEY' ")
-    st.stop() 
-        
+    st.stop()
+
   llm = LLM(
     model="gemini/gemini-2.0-flash",
     temperature=0.5,
     api_key=GOOGLE_API_KEY
-  ) 
+  )
 
   analyser = Agent(
     role = "Transaction Intelligence Analyst",
@@ -44,7 +44,7 @@ def gen_report():
     backstory = "Ex-McKinsey financial strategist specializing in transaction intelligence",
     verbose = True,
     llm = llm
-  ) 
+  )
 
   rep_generator = Agent(
     role = "Financial Strategy Consultant",
@@ -58,7 +58,7 @@ def gen_report():
     backstory = "Lead report designer for Fortune 500 financial departments",
     verbose = True,
     llm = llm
-  ) 
+  )
 
   analysis = Task(
     name = "Strategic Transaction Analysis",
@@ -80,7 +80,7 @@ def gen_report():
     - Quantify overspend impact on annual savings goals
     """,
     expected_output = "JSON with: cash_position, behavioral_segments, liquidity_risk, fraud_networks, expense_optimization"
-  ) 
+  )
 
   to_do_rep_generation = Task(
     name = "Strategic Financial Brief",
@@ -114,19 +114,19 @@ def gen_report():
     verbose = True,
     chat_llm = llm
   )
-  
-  for attempt in range(5): 
-      n = str(attempt+1).zfill(2) 
-      try: 
-        data_lines = extract_csv_content() 
-        break 
-      except Exception as e: 
-        if attempt == 4:
-          st.error(f"Failed to extract CSV content after 5 attempts: {e}") 
-          st.stop() 
-        time.sleep(3)  
 
-  t_t_res = transformed_table(data_lines) 
+  for attempt in range(5):
+      n = str(attempt+1).zfill(2)
+      try:
+        data_lines = extract_csv_content()
+        break
+      except Exception as e:
+        if attempt == 4:
+          st.error(f"Failed to extract CSV content after 5 attempts: {e}")
+          st.stop()
+        time.sleep(3)
+
+  t_t_res = transformed_table(data_lines)
   budgettt = get_budgets_list()
 
   try:
@@ -138,20 +138,20 @@ def gen_report():
     bud_light = {"monthly" : 1000, "yearly" : 12000}
 
   res = crewww.kickoff(inputs = {"pretty_table": t_t_res, "budgets": bud_light})
-  # tst = datetime.datetime.now()  
+  # tst = datetime.datetime.now()
   tst = datetime.datetime.now(ZoneInfo("Asia/Kolkata"))
 
   new_md_path = save_and_cleanup_md_report((res.raw.strip('```')).strip('markdown'), tst)
- 
-  # curr_md_path = find_md_file_location() 
-  # tst = datetime.datetime.today()  
+
+  # curr_md_path = find_md_file_location()
+  # tst = datetime.datetime.today()
 
   # with open(curr_md_path, "w") as md_f:
-  #   md_f.write(f"### Report Generated On: {str(tst)}") 
+  #   md_f.write(f"### Report Generated On: {str(tst)}")
   #   md_f.write(" \n\n--- \n")
   #   md_f.write((res.raw.strip('```')).strip('markdown'))
 
-  # curr_md_path = find_md_file_location() 
+  # curr_md_path = find_md_file_location()
 
   # md_f_name = f"md_report_{tst.day}_{tst.month}_{tst.year}_{tst.hour}_{tst.minute}_{tst.second}.md"
 
@@ -159,7 +159,7 @@ def gen_report():
   # saved_files_path = os.path.join(curr_dir, "saved_files")
   # new_md_path = os.path.join(saved_files_path, md_f_name)
 
-  # os.rename(curr_md_path, new_md_path) 
+  # os.rename(curr_md_path, new_md_path)
   git_push_md(new_md_path)
 
   return new_md_path

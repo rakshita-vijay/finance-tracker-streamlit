@@ -1,5 +1,5 @@
 import streamlit as st
-from core.budget_methods import get_budgets_list, displayBudget
+from file_methods.budget_methods import get_budgets_list, displayBudget
 from file_methods.csv_file_methods import extract_csv_content
 
 st.set_page_config(
@@ -7,7 +7,7 @@ st.set_page_config(
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
-) 
+)
 
 with st.sidebar:
     st.markdown("## Main Menu")
@@ -18,7 +18,7 @@ with st.sidebar:
     st.page_link("pages/p4_Change_Budget.py", label="Change Budget", icon="💰")
     st.page_link("pages/p5_Download_Files.py", label="Download Files", icon="⬇️")
     st.page_link("pages/p6_Wipe_Transactions.py", label="Wipe Transactions", icon="🗑️")
-    st.page_link("pages/p7_Cleanup.py", label="Cleanup", icon="🧹")  
+    st.page_link("pages/p7_Cleanup.py", label="Cleanup", icon="🧹")
 
 def view_spending_button():
     st.page_link("pages/p2_View_Spending.py", label="📊 View Spending")
@@ -29,16 +29,16 @@ def view_spending_page():
 
     # Get budgets as a list of strings like ['monthly = 5000', 'yearly = 60000']
     budget_list = get_budgets_list()
-    st.subheader("Current Budgets") 
- 
+    st.subheader("Current Budgets")
+
     try:
-        displayBudget(budget_list)  
+        displayBudget(budget_list)
     except StopIteration:
         st.warning("Budget info not found or malformed.")
 
     st.divider()
-    
-    # Display transactions 
+
+    # Display transactions
     st.subheader("Transactions to Date")
     csv_content = extract_csv_content()
     if not csv_content:
@@ -51,4 +51,4 @@ def view_spending_page():
 
     st.table(rows)
 
-view_spending_page() 
+view_spending_page()
