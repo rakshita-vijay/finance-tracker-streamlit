@@ -8,12 +8,7 @@ st.set_page_config(
     page_icon="🔐",
     layout="wide",
     initial_sidebar_state="expanded"
-) 
- 
-if 'username' not in st.session_state:
-    st.warning("Please login first.")
-    st.stop()
-username = st.session_state['username']
+)
 
 with st.sidebar:
     st.markdown("## Main Menu")
@@ -42,7 +37,7 @@ def check_credentials(username, password):
                 return True
     return False
 
-def create_empty_files(user_dir):  
+def create_empty_files(username, user_dir):  
     file_list = [
         f"{username}_csv_transactions.csv",
         f"{username}_ascii_table_of_transactions.txt",
@@ -62,7 +57,7 @@ def register_user(username, password):
     os.makedirs(user_dir, exist_ok=True)
     with open(CRED_FILE, "a") as f:
         f.write(f"{username}: {password}\n")
-    create_empty_files(user_dir)
+    create_empty_files(username, user_dir)
 
 def authentication_page():
     st.title("🔐 Login or Register")
