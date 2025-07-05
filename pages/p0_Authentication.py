@@ -9,6 +9,11 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 ) 
+ 
+if 'username' not in st.session_state:
+    st.warning("Please login first.")
+    st.stop()
+username = st.session_state['username']
 
 with st.sidebar:
     st.markdown("## Main Menu")
