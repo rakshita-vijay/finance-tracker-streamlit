@@ -2,8 +2,7 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
 
-import streamlit as st 
-
+import streamlit as st
 if 'username' not in st.session_state:
     st.switch_page("pages/p0_Authentication.py") 
 
