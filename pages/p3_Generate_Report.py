@@ -1,5 +1,10 @@
-import os, time
 import streamlit as st
+if 'username' not in st.session_state:
+    st.warning("Please login first.")
+    st.stop()
+username = st.session_state['username']
+
+import os, time
 
 from file_methods.md_file_methods import find_md_file_location
 from download_to_device import download_file
