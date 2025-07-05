@@ -1,6 +1,8 @@
 import streamlit as st
 import os
 
+from file_methods.user_file_utils import ensure_user_dir
+
 st.set_page_config(
     page_title="Authentication",
     page_icon="🔐",
@@ -66,6 +68,7 @@ def authentication_page():
                 st.session_state['password'] = password
                 st.success("Registration successful!")
                 st.experimental_rerun()
+                ensure_user_dir(username)
 
 if 'username' not in st.session_state:
     authentication_page()
