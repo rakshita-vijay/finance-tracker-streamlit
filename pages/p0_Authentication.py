@@ -40,7 +40,7 @@ def register_user(username, password):
     with open(CRED_FILE, "a") as f:
         f.write(f"{username}:{password}\n")
 
-def auth_page():
+def authentication_page():
     st.title("🔐 Login or Register")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
@@ -68,5 +68,5 @@ def auth_page():
                 st.experimental_rerun()
 
 if 'username' not in st.session_state:
-    auth_page()
-    st.stop()
+    authentication_page()
+    st.stop() 
