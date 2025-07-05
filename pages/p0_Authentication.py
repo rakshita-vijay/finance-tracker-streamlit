@@ -56,7 +56,7 @@ def authentication_page():
                 st.session_state['username'] = username
                 st.session_state['password'] = password
                 st.success("Login successful!")
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("Invalid credentials.")
         else:
@@ -67,7 +67,7 @@ def authentication_page():
                 st.session_state['username'] = username
                 st.session_state['password'] = password
                 st.success("Registration successful!")
-                st.experimental_rerun()
+                st.rerun()
                 ensure_user_dir(username)
 
 if 'username' not in st.session_state:
