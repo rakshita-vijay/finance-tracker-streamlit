@@ -9,6 +9,11 @@ from utils.git_utils import git_push_txt
 
 from file_methods.user_file_utils import get_user_file
 
+if 'username' not in st.session_state:
+    st.warning("Please login first.")
+    st.stop()
+username = st.session_state['username']
+
 def find_budgets_file_location(): 
   budgets_path = get_user_file(username, "default_budgets", "txt")
   return budgets_path 
