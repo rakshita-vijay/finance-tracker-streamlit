@@ -3,6 +3,8 @@ import os
 
 from file_methods.user_file_utils import ensure_user_dir
 
+from utils.git_utils import git_push_txt, git_push_csv, git_push_md, git_push_pdf
+
 st.set_page_config(
     page_title="Authentication",
     page_icon="🔐",
@@ -49,9 +51,16 @@ def create_empty_files(username, user_dir):
         path = os.path.join(user_dir, fname) 
         if fname.endswith('.pdf'):
             open(path, "wb").close()
+            git_push_pdf(path)
         else:
             open(path, "w").close() 
-
+            if fname.split(".")[1] == 'csv':
+                git_push_csv(path)
+            elif fname.split(".")[1] == 'txt':
+                git_push_txt(path)
+            elif fname.split(".")[1] == 'md':
+                git_push_md(path)
+                
 def register_user(username, password):
     user_dir = f"saved_files/{username}"
     os.makedirs(user_dir, exist_ok=True)
