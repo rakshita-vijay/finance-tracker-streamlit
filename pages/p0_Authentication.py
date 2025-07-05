@@ -37,10 +37,27 @@ def check_credentials(username, password):
                 return True
     return False
 
+def create_empty_files(user_dir):  
+    file_list = [
+        f"{username}_csv_transactions.csv",
+        f"{username}_ascii_table_of_transactions.txt",
+        f"{username}_pdf_of_transactions.pdf",
+        f"{username}_md_report.md",
+        f"{username}_budgets.txt"
+    ]
+    for fname in file_list:
+        path = os.path.join(user_dir, fname) 
+        if fname.endswith('.pdf'):
+            open(path, "wb").close()
+        else:
+            open(path, "w").close() 
+
 def register_user(username, password):
-    os.makedirs(f"saved_files/{username}", exist_ok=True)
+    user_dir = f"saved_files/{username}"
+    os.makedirs(user_dir, exist_ok=True)
     with open(CRED_FILE, "a") as f:
-        f.write(f"{username}:{password}\n")
+        f.write(f"{username}: {password}\n")
+    create_empty_files(user_dir)
 
 def authentication_page():
     st.title("🔐 Login or Register")
