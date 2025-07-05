@@ -7,14 +7,11 @@ from file_methods.txt_file_methods import find_txt_file_location
 
 from utils.git_utils import git_push_txt
 
-def find_budgets_file_location():
-  curr_budgets = ""
-  for folders, _, files in os.walk("./saved_files"):
-    for file in files:
-      if file[-19:] == 'default_budgets.txt':
-        curr_budgets = ''.join(os.path.join(os.getcwd(), os.path.join(folders, file)).split('./'))
-        break
-  return curr_budgets
+from file_methods.user_file_utils import get_user_file
+
+def find_budgets_file_location(): 
+  budgets_path = get_user_file(username, "default_budgets", "txt")
+  return budgets_path 
 
 def get_budgets_list():
   with open(find_budgets_file_location(), 'r') as f:
