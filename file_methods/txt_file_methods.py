@@ -8,7 +8,7 @@ def find_txt_file_location():
 
   for folders, _, files in os.walk("./saved_files"):
     for file in files:
-      if file[[0:11]] == 'txt_version':
+      if file[0:11] == 'txt_version':
         curr_txt = ''.join(os.path.join(os.getcwd(), os.path.join(folders, file)).split('./'))
         break
 
