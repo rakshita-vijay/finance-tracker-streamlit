@@ -5,7 +5,7 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st 
 
 if 'username' not in st.session_state:
-    st.switch_page("pages/p0_Authentication.py", label="Authentication", icon="🔐")
+    st.switch_page("pages/p0_Authentication.py")
     # st.page_link("pages/p0_Authentication.py", label="Authentication", icon="🔐")
 
 from pages.p0_Authentication import authentication_button
