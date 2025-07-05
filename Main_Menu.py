@@ -3,6 +3,7 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
 
 import streamlit as st
+from pagesp0_Authentication import authentication_button
 from pages.p1_Add_Transactions import add_transactions_button
 from pages.p2_View_Spending import view_spending_button
 from pages.p3_Generate_Report import generate_report_button
@@ -31,6 +32,7 @@ st.markdown(
 with st.sidebar:
     st.markdown("## Main Menu")
     st.page_link("Main_Menu.py", label="Home", icon="🏠")
+    st.page_link("pages/p0_Authentication.py", label="Authentication", icon="🔐")
     st.page_link("pages/p1_Add_Transactions.py", label="Add Transactions", icon="➕")
     st.page_link("pages/p2_View_Spending.py", label="View Spending", icon="📊")
     st.page_link("pages/p3_Generate_Report.py", label="Generate Report", icon="📝")
@@ -42,6 +44,7 @@ with st.sidebar:
 st.title("💸 Finance Tracker")
 st.write("Navigate using the sidebar to manage your finances, analyze trends, and generate reports.")
 st.divider()
+authentication_button()
 add_transactions_button()
 view_spending_button()
 generate_report_button()
