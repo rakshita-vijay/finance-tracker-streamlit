@@ -98,7 +98,5 @@ def authentication_page():
                 st.success("Registration successful!")
                 st.rerun()
                 ensure_user_dir(username)
-
-if 'username' not in st.session_state:
-    authentication_page()
-    st.stop()  
+ 
+authentication_page() 
