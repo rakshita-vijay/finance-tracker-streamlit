@@ -7,8 +7,17 @@ from file_methods.txt_file_methods import find_txt_file_location
 
 from utils.git_utils import git_push_txt
 
+def find_budgets_file_location():
+  curr_budgets = ""
+  for folders, _, files in os.walk("./saved_files"):
+    for file in files:
+      if file[-19:] == 'default_budgets.txt':
+        curr_budgets = ''.join(os.path.join(os.getcwd(), os.path.join(folders, file)).split('./'))
+        break
+  return curr_budgets
+
 def get_budgets_list():
-  with open("saved_files/default_budget.txt", 'r') as f:
+  with open(find_budgets_file_location(), 'r') as f:
     f.seek(0)
     fr = f.read()
   frs = fr.split(', ')
@@ -51,9 +60,9 @@ def changeBudget():
             monthly_budget = math.floor(budget / 12)
             yearly_budget = budget
          bl = f"monthly = {monthly_budget}, yearly = {yearly_budget}".split(', ')
-         with open("saved_files/default_budget.txt", 'w') as f:
+         with open(find_budgets_file_location(), 'w') as f:
             f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
-         git_push_txt("saved_files/default_budget.txt", "Update default budgets via Streamlit")
+         git_push_txt(find_budgets_file_location(), "Update default budgets via Streamlit")
          return True
    return False
 
