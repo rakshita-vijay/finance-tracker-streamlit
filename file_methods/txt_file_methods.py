@@ -3,16 +3,11 @@ from prettytable import PrettyTable
 from file_methods.csv_file_methods import find_csv_file_location
 from file_methods.pdf_file_methods import txt_to_pdf
 
-def find_txt_file_location():
-  curr_txt = ""
+from file_methods.user_file_utils import get_user_file
 
-  for folders, _, files in os.walk("./saved_files"):
-    for file in files:
-      if file[0:11] == 'txt_version':
-        curr_txt = ''.join(os.path.join(os.getcwd(), os.path.join(folders, file)).split('./'))
-        break
-
-  return curr_txt
+def find_txt_file_location(): 
+  txt_path = get_user_file(username, "txt_version_of_csv_transactions", "txt")
+  return txt_path 
 
 def create_and_format_pretty_table():
   curr_csv = find_csv_file_location()
