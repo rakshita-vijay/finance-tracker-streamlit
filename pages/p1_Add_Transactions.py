@@ -1,4 +1,9 @@
 import streamlit as st
+if 'username' not in st.session_state:
+    st.warning("Please login first.")
+    st.stop()
+username = st.session_state['username']
+
 from file_methods.csv_file_methods import add_to_csv, find_csv_file_location
 from file_methods.txt_file_methods import update_txt_file 
 from utils.git_utils import git_push_csv
