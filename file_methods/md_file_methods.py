@@ -1,13 +1,11 @@
+import streamlit as st
+if 'username' not in st.session_state:
+    st.switch_page("pages/p0_Authentication.py")
+username = st.session_state['username']
+
 import os, glob
 
-from file_methods.user_file_utils import get_user_file
-
-import streamlit as st
-
-if 'username' not in st.session_state:
-    st.warning("Please login first.")
-    st.stop()
-username = st.session_state['username']
+from file_methods.user_file_utils import get_user_file 
 
 def find_md_file_location(): 
   md_path = get_user_file(username, "md_report", "md") 
