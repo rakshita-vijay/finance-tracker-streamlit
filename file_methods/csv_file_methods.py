@@ -1,14 +1,12 @@
+import streamlit as st
+if 'username' not in st.session_state:
+    st.switch_page("pages/p0_Authentication.py")
+username = st.session_state['username']
+
 import os, csv, sys, datetime, time
 from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transformed_table, get_max_width_of_each_column
 
-from file_methods.user_file_utils import get_user_file
-
-import streamlit as st
-
-if 'username' not in st.session_state:
-    st.warning("Please login first.")
-    st.stop()
-username = st.session_state['username']
+from file_methods.user_file_utils import get_user_file 
 
 def find_csv_file_location():
   csv_path = get_user_file(username, "csv_transactions", "csv") 
