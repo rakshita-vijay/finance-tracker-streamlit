@@ -1,16 +1,11 @@
 import os, csv, sys, datetime, time
 from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transformed_table, get_max_width_of_each_column
 
+from file_methods.user_file_utils import get_user_file
+
 def find_csv_file_location():
-  curr_csv = ""
-
-  for folders, _, files in os.walk("./saved_files"):
-    for file in files:
-      if file[len(file)-4 : len(file)] == '.csv':
-        curr_csv = ''.join(os.path.join(os.getcwd(), os.path.join(folders, file)).split('./'))
-        break
-
-  return curr_csv
+  csv_path = get_user_file(username, "csv_transactions.csv") 
+  return csv_path
 
 def extract_csv_content(curr_csv = find_csv_file_location()):
   csv_file = open(curr_csv, mode='r', encoding='utf-8')
