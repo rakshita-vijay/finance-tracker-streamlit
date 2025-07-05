@@ -2,6 +2,8 @@ import os, glob
 
 from file_methods.user_file_utils import get_user_file
 
+import streamlit as st
+
 if 'username' not in st.session_state:
     st.warning("Please login first.")
     st.stop()
