@@ -1,4 +1,9 @@
 import streamlit as st
+if 'username' not in st.session_state:
+    st.warning("Please login first.")
+    st.stop()
+username = st.session_state['username']
+
 from file_methods.budget_methods import changeBudget, get_budgets_list, displayBudget
 
 st.set_page_config(
