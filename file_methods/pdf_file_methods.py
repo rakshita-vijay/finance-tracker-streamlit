@@ -1,16 +1,11 @@
 import os
 from fpdf import FPDF
 
-def find_pdf_file_location():
-  curr_pdf = ""
+from file_methods.user_file_utils import get_user_file
 
-  for folders, _, files in os.walk("./saved_files"):
-    for file in files:
-      if file[len(file)-4 : len(file)] == '.pdf':
-        curr_pdf = ''.join(os.path.join(os.getcwd(), os.path.join(folders, file)).split('./'))
-        break
-
-  return curr_pdf
+def find_pdf_file_location(): 
+  pdf_path = get_user_file(username, "report", "pdf")
+  return pdf_path 
 
 def txt_to_pdf(txt_file, pdf_file):
   pdf = FPDF()
