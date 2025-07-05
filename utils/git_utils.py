@@ -22,8 +22,8 @@ def git_push_txt(txt_relative_path=find_txt_file_location(), commit_message="Upd
     repo = setup_git_repo()
     if repo is None:
         return False, "Git repo not found."
-    if not txt_relative_path or not os.path.isfile(txt_relative_path):
-        return False, "TXT file path is invalid or file does not exist."
+    # if not txt_relative_path or not os.path.isfile(txt_relative_path):
+    #     return False, "TXT file path is invalid or file does not exist."
     try:
         repo.git.add(txt_relative_path)
         repo.index.commit(commit_message)
@@ -37,8 +37,8 @@ def git_push_csv(csv_relative_path=find_csv_file_location(), commit_message="Upd
     repo = setup_git_repo()
     if repo is None:
         return False, "Git repo not found."
-    if not csv_relative_path or not os.path.isfile(csv_relative_path):
-        return False, "CSV file path is invalid or file does not exist."
+    # if not csv_relative_path or not os.path.isfile(csv_relative_path):
+    #     return False, "CSV file path is invalid or file does not exist."
     try:
         repo.git.add(csv_relative_path)
         repo.index.commit(commit_message)
@@ -52,8 +52,8 @@ def git_push_md(md_relative_path=find_md_file_location(), commit_message="Update
     repo = setup_git_repo()
     if repo is None:
         return False, "Git repo not found."
-    if not md_relative_path or not os.path.isfile(md_relative_path):
-        return False, "MD file path is invalid or file does not exist."
+    # if not md_relative_path or not os.path.isfile(md_relative_path):
+    #     return False, "MD file path is invalid or file does not exist."
     try:
         repo.git.add(md_relative_path)
         repo.index.commit(commit_message)
@@ -67,8 +67,8 @@ def git_push_pdf(pdf_relative_path=find_pdf_file_location(), commit_message="Upd
     repo = setup_git_repo()
     if repo is None:
         return False, "Git repo not found."
-    if not pdf_relative_path or not os.path.isfile(pdf_relative_path):
-        return False, "PDF file path is invalid or file does not exist."
+    # if not pdf_relative_path or not os.path.isfile(pdf_relative_path):
+    #     return False, "PDF file path is invalid or file does not exist."
     try:
         repo.git.add(pdf_relative_path)
         repo.index.commit(commit_message)
