@@ -1,4 +1,9 @@
 import streamlit as st
+if 'username' not in st.session_state:
+    st.warning("Please login first.")
+    st.stop()
+username = st.session_state['username']
+
 from download_to_device import download_file, download_all_files_flat_to_downloads, cleanup_pycache_and_temp_files
 
 from file_methods.csv_file_methods import find_csv_file_location
