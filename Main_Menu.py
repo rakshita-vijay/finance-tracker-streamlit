@@ -3,7 +3,7 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
 
 import streamlit as st
-from pagesp0_Authentication import authentication_button
+from pages.p0_Authentication import authentication_button
 from pages.p1_Add_Transactions import add_transactions_button
 from pages.p2_View_Spending import view_spending_button
 from pages.p3_Generate_Report import generate_report_button
