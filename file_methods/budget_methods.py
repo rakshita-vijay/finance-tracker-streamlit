@@ -44,6 +44,7 @@ def displayBudget(budget_list):
     budget_type = 'YEARLY'
     st.write("{bt} budget = {b}".format(bt = budget_type.title(), b = yb))
 
+'''
 def changeBudget():
   current_budgets = get_budgets_list()
   m_def = int((current_budgets[0].split(" = "))[1])
@@ -78,7 +79,40 @@ def changeBudget():
       git_push_txt(find_budgets_file_location(), "Update default budgets via Streamlit")
       return True
   return False
+'''
 
+def changeBudget():
+  budget = None
+  current_budgets = get_budgets_list()
+  m_def = int((current_budgets[0].split(" = "))[1])
+  y_def = int((current_budgets[1].split(" = "))[1])
+
+  options=["NONE", "monthly", "yearly"]
+  budget_type = st.selectbox("Do you want to enter a monthly or yearly budget?", options)
+
+  if budget_type != "NONE":
+    budget = st.number_input(
+      f"Enter your {budget_type} budget:",
+      min_value=0,
+      value=m_def if budget_type=="monthly" else y_def,
+      step=1,
+      key=f"{budget_type}_input",
+      disabled=False
+    )
+
+    if budget is not None:
+      if budget_type == "monthly":
+        monthly_budget = budget
+        yearly_budget = math.floor(budget * 12)
+      else:
+        monthly_budget = math.floor(budget / 12)
+        yearly_budget = budget
+
+      with open(find_budgets_file_location(), 'w') as f:
+        f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
+      git_push_txt(find_budgets_file_location(), "Update default budgets via Streamlit")
+      return True
+  return False
   # if it exceeds this month's budget, then i should ask user whether they want tto cut it completely form the next month's budget, or piecemeal througout the months left in the year
   # Calculate percentage of monthly and yearly budget used
   # Project year-end financial position based on current spending patterns
