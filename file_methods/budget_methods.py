@@ -100,7 +100,7 @@ def changeBudget():
       disabled=False
     )
 
-    if budget is not None:
+    if budget != (m_def if budget_type == "monthly" else y_def):
       if budget_type == "monthly":
         monthly_budget = budget
         yearly_budget = math.floor(budget * 12)
