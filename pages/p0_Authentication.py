@@ -17,9 +17,20 @@ def authentication_button():
     
 CRED_FILE = "saved_files/user_credentials.txt"
 
-def check_credentials(username, password):
+def strip_it(cred_fileee):      
+    with open(cred_fileee, "r") as f_r:
+        c_in_f = f.readlines() 
+        to_keep = [l for l in c_in_f if l.strip() not in [None, '', ""]]
+
+    with open(cred_fileee, "w") as f_w:
+        f_w.writelines(to_keep)
+    git_push_txt(cred_fileee) 
+    
+def check_credentials(username, password): 
     if not os.path.exists(CRED_FILE):
         return False 
+        
+    strip_it(CRED_FILE)
     with open(CRED_FILE, "r") as f: 
         content_in_f = f.read()
         if (''.join(content_in_f.split('\n'))).strip() in [None, '', ""]:
@@ -56,7 +67,7 @@ def create_empty_files(username, user_dir):
                 git_push_txt(path)
             elif fname.split(".")[1] == 'md':
                 git_push_md(path)
-                
+        
 def register_user(username, password):
     user_dir = f"saved_files/{username}"
     os.makedirs(user_dir, exist_ok=True)
@@ -65,14 +76,7 @@ def register_user(username, password):
         f.write(f"{username}: {password}\n")
     git_push_txt(CRED_FILE)
     
-    with open(CRED_FILE, "r") as f_r:
-        c_in_f = f.readlines() 
-        to_keep = [l for l in c_in_f if l.strip() not in [None, '', ""]]
-    
-    with open(CRED_FILE, "w") as f_w:
-        f_w.writelines(to_keep) 
-        
-    git_push_txt(CRED_FILE)
+    strip_it(CRED_FILE) 
     create_empty_files(username, user_dir)
 
 def check_and_recreate_user_files(username):
