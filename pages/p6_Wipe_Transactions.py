@@ -62,7 +62,7 @@ def wipe_transactions_page():
       if st.button("Cancel"):
         st.session_state.wipe_confirm = False
 
-'''
+maybe_it = '''
 def wipe_transactions_page():
   st.header("🗑️ Wipe Transactions")
   st.divider()
