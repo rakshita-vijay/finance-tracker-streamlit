@@ -19,8 +19,12 @@ CRED_FILE = "saved_files/user_credentials.txt"
 
 def check_credentials(username, password):
     if not os.path.exists(CRED_FILE):
-        return False
-    with open(CRED_FILE, "r") as f:
+        return False 
+    with open(CRED_FILE, "r") as f: 
+        content_in_f = f.read()
+        if (''.join(content_in_f.split('\n'))).strip() in [None, '', ""]:
+            return False
+    with open(CRED_FILE, "r") as f: 
         for line in f:
             u, p = line.strip().split(": ", 1)
             if u == username and p == password:
