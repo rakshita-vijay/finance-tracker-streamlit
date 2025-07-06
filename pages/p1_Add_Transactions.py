@@ -2,6 +2,7 @@ import streamlit as st
 if 'username' not in st.session_state:
   st.switch_page("pages/p0_Authentication.py")
 username = st.session_state['username']
+create_empty_files(username)
 
 from file_methods.csv_file_methods import add_to_csv, find_csv_file_location
 from file_methods.txt_file_methods import update_txt_file
