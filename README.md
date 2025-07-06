@@ -1,13 +1,13 @@
 # 💸 Finance Tracker Streamlit
 
-A privacy-first, AI-powered personal finance tracker—**no terminal needed!**
+A privacy-first, AI-powered personal finance tracker - **no terminal needed!**
 Just open [the app](https://finance-tracker-analyser.streamlit.app/) and start managing your money, your way.
   
 ---
   
 ## 🌟 Highlights
 
-- **True user isolation:** Each user gets their own private folder and files—no one else can see or change your data.
+- **True user isolation:** Each user gets their own private folder and files - no one else can see or change your data.
 - **No installation, no terminal:** Everything runs in the browser.
 - **AI-powered reports:** Get actionable insights and strategy recommendations.
 - **Instant downloads:** Export your data as CSV, TXT, PDF, Markdown, or ZIP.
@@ -34,7 +34,7 @@ Just open [the app](https://finance-tracker-analyser.streamlit.app/) and start m
   - One-click, AI-generated financial insights and strategy reports.
   - Download as Markdown or PDF.
 - **⬇️ Download Your Data**
-  - Export your data in multiple formats—always user-specific.
+  - Export your data in multiple formats - always user-specific.
 - **🗑️ Wipe Transactions**
   - Clear your own data (with password confirmation).
 - **🧹 Cleanup**
@@ -52,7 +52,7 @@ Just open [the app](https://finance-tracker-analyser.streamlit.app/) and start m
   - If you delete your files, they’re recreated on your next login.
 - **No Data Leaks**
   - Every file read/write uses your own folder and file.
-  - No global/shared files—guaranteed by code and repo structure.
+  - No global/shared files - guaranteed by code and repo structure.
 - **GitHub Integration**
   - All changes are pushed to the repo for transparency and backup.
   
@@ -127,7 +127,7 @@ finance-tracker-streamlit/
 ## 📝 Known Quirks & Tips
 
 - **Do not delete your user folder or files manually!**
-If you do, just log in again—the app will recreate everything for you.
+If you do, just log in again - the app will recreate everything for you.
 - **Passwords are stored in plain text** (for demo simplicity).
 Do not reuse sensitive passwords.
 - **If you see someone else’s data:**
