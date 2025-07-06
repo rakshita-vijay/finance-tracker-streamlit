@@ -58,6 +58,7 @@ def register_user(username, password):
     os.makedirs(user_dir, exist_ok=True)
     with open(CRED_FILE, "a") as f:
         f.write(f"{username}: {password}\n")
+    git_push_txt(CRED_FILE)
     create_empty_files(username, user_dir)
 
 def authentication_page():
@@ -74,7 +75,8 @@ def authentication_page():
                 st.session_state['username'] = username
                 st.session_state['password'] = password
                 st.success("Login successful!")
-                st.rerun()
+                st.switch_page("Main_Menu.py")
+                # st.rerun() 
             else:
                 st.error("Invalid credentials.")
         else:
@@ -85,7 +87,8 @@ def authentication_page():
                 st.session_state['username'] = username
                 st.session_state['password'] = password
                 st.success("Registration successful!")
-                st.rerun()
+                st.switch_page("Main_Menu.py")
+                # st.rerun()
                 ensure_user_dir(username)
  
 authentication_page()
