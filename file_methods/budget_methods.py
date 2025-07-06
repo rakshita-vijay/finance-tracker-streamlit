@@ -12,7 +12,8 @@ from file_methods.user_file_utils import get_user_file
 from utils.git_utils import git_push_txt
 
 def find_budgets_file_location():
-  budgets_path = get_user_file(username, "budgets", "txt")
+  user_name = st.session_state['username']
+  budgets_path = get_user_file(user_name, "budgets", "txt")
   return budgets_path
 
 def get_budgets_list():
@@ -43,7 +44,7 @@ def displayBudget(budget_list):
     budget_type = 'YEARLY'
     st.write("{bt} budget = {b}".format(bt = budget_type.title(), b = yb))
 
-def changeBudget(): 
+def changeBudget():
   current_budgets = get_budgets_list()
   m_def = int((current_budgets[0].split(" = "))[1])
   y_def = int((current_budgets[1].split(" = "))[1])
@@ -52,17 +53,17 @@ def changeBudget():
       "Do you want to enter a monthly or yearly budget?",
       options=["NONE", "monthly", "yearly"]
     )
-    
-    if budget_type != "NONE": 
+
+    if budget_type != "NONE":
       budget = st.number_input(
         f"Enter your {budget_type} budget:",
         min_value=0,
-        value=m_def if budget_type=="monthly" else y_def, 
+        value=m_def if budget_type=="monthly" else y_def,
         step=1,
         key=f"{budget_type}_input",
         disabled=False
       )
-    
+
     submitted = st.form_submit_button("Update Budget")
     if submitted and budget_type != "NONE":
       if budget_type == "monthly":
@@ -71,7 +72,7 @@ def changeBudget():
       else:
         monthly_budget = math.floor(budget / 12)
         yearly_budget = budget
-        
+
       with open(find_budgets_file_location(), 'w') as f:
         f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
       git_push_txt(find_budgets_file_location(), "Update default budgets via Streamlit")

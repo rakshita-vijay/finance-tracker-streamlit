@@ -9,7 +9,8 @@ from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transfor
 from file_methods.user_file_utils import get_user_file
 
 def find_csv_file_location():
-  csv_path = get_user_file(username, "csv_transactions", "csv")
+  user_name = st.session_state['username']
+  csv_path = get_user_file(user_name, "csv_transactions", "csv")
   return csv_path
 
 def extract_csv_content(curr_csv = find_csv_file_location()):
