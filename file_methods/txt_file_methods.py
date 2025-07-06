@@ -6,7 +6,7 @@ username = st.session_state['username']
 import os, csv
 from prettytable import PrettyTable
 from file_methods.csv_file_methods import find_csv_file_location
-from file_methods.pdf_file_methods import txt_to_pdf
+from file_methods.pdf_file_methods import txt_to_pdf, find_pdf_file_location
 
 from file_methods.user_file_utils import get_user_file
 
@@ -45,12 +45,12 @@ def create_and_format_pretty_table():
 def update_txt_file(table = create_and_format_pretty_table()):
   table_str = table.get_string()
 
-  curr_fp = find_txt_file_location()
+  curr_txt_fp = find_txt_file_location()
 
-  with open(curr_fp, "w", encoding='utf-8') as f:
+  with open(curr_txt_fp, "w", encoding='utf-8') as f:
     f.write(table_str) 
 
-  new_pdf_name = f"pdf_{rn_tsmp}.pdf"
-  new_pdf_fp = os.path.join(dir_path, new_pdf_name)
+  curr_txt_fp = find_txt_file_location()
+  curr_pdf_fp = find_pdf_file_location() 
 
-  txt_to_pdf(new_fp, new_pdf_fp)
+  txt_to_pdf(curr_txt_fp, curr_pdf_fp)
