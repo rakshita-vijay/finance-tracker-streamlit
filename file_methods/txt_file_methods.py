@@ -11,7 +11,7 @@ from file_methods.pdf_file_methods import txt_to_pdf
 from file_methods.user_file_utils import get_user_file
 
 def find_txt_file_location():
-  txt_path = get_user_file(username, "txt_version_of_csv_transactions", "txt")
+  txt_path = get_user_file(username, "ascii_table_of_transactions", "txt")
   return txt_path
 
 def create_and_format_pretty_table():
