@@ -8,10 +8,10 @@ from prettytable import PrettyTable
 from file_methods.csv_file_methods import find_csv_file_location
 from file_methods.pdf_file_methods import txt_to_pdf
 
-from file_methods.user_file_utils import get_user_file 
+from file_methods.user_file_utils import get_user_file
 
 def find_txt_file_location():
-  txt_path = get_user_file(username, "ascii_table_of_transactions", "txt")
+  txt_path = get_user_file(username, "txt_version_of_csv_transactions", "txt")
   return txt_path
 
 def create_and_format_pretty_table():
@@ -48,18 +48,7 @@ def update_txt_file(table = create_and_format_pretty_table()):
   curr_fp = find_txt_file_location()
 
   with open(curr_fp, "w", encoding='utf-8') as f:
-    f.write(table_str)
-
-  curr_csv_fp = find_csv_file_location()
-  rn_tsmp = (curr_csv_fp.split("/csv_")[-1]).strip(".csv")
-
-  new_name = f"txt_version_of_csv_{rn_tsmp}.txt"
-
-  curr_fp = find_txt_file_location()
-  dir_path = os.path.join(curr_fp.split('saved_files/')[0], 'saved_files/')
-  new_fp = os.path.join(dir_path, new_name)
-
-  os.rename(curr_fp, new_fp)
+    f.write(table_str) 
 
   new_pdf_name = f"pdf_{rn_tsmp}.pdf"
   new_pdf_fp = os.path.join(dir_path, new_pdf_name)
