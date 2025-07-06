@@ -131,11 +131,12 @@ def authentication_page():
       return
     if mode == "Login":
       if check_credentials(username, password):
+        st.success("Login successful!") 
+        st.spinner("Redirecting...")
+        
         st.session_state['username'] = username
         st.session_state['password'] = password
-        check_and_recreate_user_files(username)
-        st.success("Login successful!")
-        time.sleep(3)
+        check_and_recreate_user_files(username) 
         st.switch_page("pages/m_Main_Menu.py")
       else:
         st.error("Invalid credentials.")
@@ -144,11 +145,12 @@ def authentication_page():
         st.error("User already exists.")
       else:
         register_user(username, password)
+        st.success("Registration successful!")
+        st.spinner("Redirecting...")
+        
         st.session_state['username'] = username
         st.session_state['password'] = password
-        check_and_recreate_user_files(username)
-        st.success("Registration successful!")
-        time.sleep(3)
+        check_and_recreate_user_files(username) 
         st.switch_page("pages/m_Main_Menu.py")
 
 authentication_page()
