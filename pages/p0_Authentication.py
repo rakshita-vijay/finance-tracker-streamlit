@@ -60,8 +60,18 @@ def create_empty_files(username, user_dir):
 def register_user(username, password):
     user_dir = f"saved_files/{username}"
     os.makedirs(user_dir, exist_ok=True)
+    
     with open(CRED_FILE, "a") as f:
         f.write(f"{username}: {password}\n")
+    git_push_txt(CRED_FILE)
+    
+    with open(CRED_FILE, "r") as f_r:
+        c_in_f = f.readlines() 
+    to_keep = [l for l in c_in_f if l.strip() not in [None, '', ""]]
+    
+    with open(CRED_FILE, "w") as f_w:
+        f_w.writelines(to_keep) 
+        
     git_push_txt(CRED_FILE)
     create_empty_files(username, user_dir)
 
