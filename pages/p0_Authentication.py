@@ -52,6 +52,7 @@ def create_empty_files(username, user_dir):
     ]
     for fname in file_list:
         path = os.path.join(user_dir, fname) 
+        print(f"Creating file: {path}")
         if fname.endswith('.pdf'):
             open(path, "wb").close()
             git_push_pdf(path)
@@ -110,6 +111,7 @@ def authentication_page():
             if check_credentials(username, password):
                 st.session_state['username'] = username
                 st.session_state['password'] = password
+                check_and_recreate_user_files(username)
                 st.success("Login successful!")
                 st.switch_page("pages/m_Main_Menu.py")  
             else:
@@ -120,10 +122,9 @@ def authentication_page():
             else:
                 register_user(username, password)
                 st.session_state['username'] = username
-                st.session_state['password'] = password 
-                ensure_user_dir(username)
+                st.session_state['password'] = password  
                 check_and_recreate_user_files(username)
                 st.success("Registration successful!")
                 st.switch_page("pages/m_Main_Menu.py") 
  
-authentication_page()
+authentication_page() 
