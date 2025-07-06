@@ -16,20 +16,32 @@ def find_budgets_file_location():
   return budgets_path 
 
 def get_budgets_list():
-  with open(find_budgets_file_location(), 'r') as f:
-    f.seek(0)
-    fr = f.read()
-  frs = fr.split(', ')
+  try: 
+    with open(find_budgets_file_location(), 'r') as f:
+      f.seek(0)
+      fr = f.read()
+    frs = fr.split(', ')
+  except:
+    st.warning(f"Unable to get budget from file: {find_budgets_file_location()}")
+    frs = [500, 6000]
   return frs
 
 def displayBudget(budget_list):
-  mb = re.search(r'monthly = (\d+)', budget_list[0].strip()).group(1)
-  yb = re.search(r'yearly = (\d+)', budget_list[1].strip()).group(1)
+  try: 
+    mb = re.search(r'monthly = (\d+)', budget_list[0].strip()).group(1)
+    yb = re.search(r'yearly = (\d+)', budget_list[1].strip()).group(1) 
+    st.write("{} budget = {}".format('monthly'.title(), mb))
 
-  st.write("{} budget = {}".format('monthly'.title(), mb))
+    budget_type = 'YEARLY'
+    st.write("{bt} budget = {b}".format(bt = budget_type.title(), b = yb))
+  except:
+    st.warning(f"Unable to get budget from file: {find_budgets_file_location()}")
+    mb = 500
+    yb = 6000
+    st.write("{} budget = {}".format('monthly'.title(), mb))
 
-  budget_type = 'YEARLY'
-  st.write("{bt} budget = {b}".format(bt = budget_type.title(), b = yb))
+    budget_type = 'YEARLY'
+    st.write("{bt} budget = {b}".format(bt = budget_type.title(), b = yb))
 
 def changeBudget():
    with st.form("budget_form"):
