@@ -52,7 +52,9 @@ def create_empty_files(username, user_dir):
     ]
     for fname in file_list:
         path = os.path.join(user_dir, fname) 
-        print(f"Creating file: {path}")
+        if os.path.exists(path): 
+            continue
+            
         if fname.endswith('.pdf'):
             open(path, "wb").close()
             git_push_pdf(path)
