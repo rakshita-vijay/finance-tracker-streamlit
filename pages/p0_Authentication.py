@@ -42,8 +42,8 @@ def check_credentials(username, password):
         return True
   return False
 
-def create_empty_files(username, user_dir = None):
-  if user_dir == None:
+def create_empty_files(username, user_dir="NOT ENTERED"):
+  if user_dir == "NOT ENTERED":
     user_dir = os.path.join('saved_files', username)
     
   file_list = [
