@@ -138,28 +138,9 @@ def gen_report():
     bud_light = {"monthly" : 1000, "yearly" : 12000}
 
   res = crewww.kickoff(inputs = {"pretty_table": t_t_res, "budgets": bud_light})
-  # tst = datetime.datetime.now()
   tst = datetime.datetime.now(ZoneInfo("Asia/Kolkata"))
 
   new_md_path = save_and_cleanup_md_report((res.raw.strip('```')).strip('markdown'), tst)
-
-  # curr_md_path = find_md_file_location()
-  # tst = datetime.datetime.today()
-
-  # with open(curr_md_path, "w") as md_f:
-  #   md_f.write(f"### Report Generated On: {str(tst)}")
-  #   md_f.write(" \n\n--- \n")
-  #   md_f.write((res.raw.strip('```')).strip('markdown'))
-
-  # curr_md_path = find_md_file_location()
-
-  # md_f_name = f"md_report_{tst.day}_{tst.month}_{tst.year}_{tst.hour}_{tst.minute}_{tst.second}.md"
-
-  # curr_dir = os.getcwd()
-  # saved_files_path = os.path.join(curr_dir, "saved_files")
-  # new_md_path = os.path.join(saved_files_path, md_f_name)
-
-  # os.rename(curr_md_path, new_md_path)
   git_push_md(new_md_path)
 
   return new_md_path

@@ -45,7 +45,7 @@ def check_credentials(username, password):
 def create_empty_files(username, user_dir="NOT ENTERED"):
   if user_dir == "NOT ENTERED":
     user_dir = os.path.join('saved_files', username)
-    
+
   file_list = [
     f"{username}_csv_transactions.csv",
     f"{username}_ascii_table_of_transactions.txt",
@@ -131,12 +131,12 @@ def authentication_page():
       return
     if mode == "Login":
       if check_credentials(username, password):
-        st.success("Login successful!") 
+        st.success("Login successful!")
         st.spinner("Redirecting...")
-        
+
         st.session_state['username'] = username
         st.session_state['password'] = password
-        check_and_recreate_user_files(username) 
+        check_and_recreate_user_files(username)
         st.switch_page("pages/m_Main_Menu.py")
       else:
         st.error("Invalid credentials.")
@@ -147,10 +147,10 @@ def authentication_page():
         register_user(username, password)
         st.success("Registration successful!")
         st.spinner("Redirecting...")
-        
+
         st.session_state['username'] = username
         st.session_state['password'] = password
-        check_and_recreate_user_files(username) 
+        check_and_recreate_user_files(username)
         st.switch_page("pages/m_Main_Menu.py")
 
-authentication_page() 
+authentication_page()

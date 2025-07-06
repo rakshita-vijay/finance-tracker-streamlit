@@ -44,8 +44,8 @@ def download_all_files_flat_to_downloads():
   os.remove(zipper_file_name)
   return clicked
 
-def download_file(file_to_download=None):
-  if file_to_download is None:
+def download_file(file_to_download="NOT ENTERED"):
+  if file_to_download == "NOT ENTERED":
     st.info("No file specified, defaulting to CSV.")
     file_to_download = find_csv_file_location()
 
