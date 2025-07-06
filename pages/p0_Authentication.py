@@ -1,5 +1,5 @@
 import streamlit as st
-import os
+import os, csv
 
 from file_methods.user_file_utils import ensure_user_dir
 
@@ -41,9 +41,10 @@ def create_empty_files(username, user_dir):
             open(path, "wb").close()
             git_push_pdf(path)
         elif fname.endswith('.csv'):
-            fields = ['S.NO', 'DATE', 'DESCRIPTION', 'AMOUNT', 'PAYMENT METHOD', 'STATUS', 'NOTES']
-            with open(path, "w") as csv_f:
-                csv.writerow(fields)
+            fields = ['S.NO', 'DATE', 'DESCRIPTION', 'AMOUNT', 'PAYMENT METHOD', 'STATUS', 'NOTES'] 
+            with open(path, "w", newline='') as csv_f:
+                csv_writer = csv.writer(csv_f, delimiter=',')
+                csv_writer.writerow(fields)
             git_push_csv(path)
         else:
             open(path, "w").close() 
