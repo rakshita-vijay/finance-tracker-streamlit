@@ -35,15 +35,16 @@ def create_and_format_pretty_table():
     "PAYMENT METHOD": "c",
     "STATUS": "c",
     "NOTES": "l"
-  }
-
+  } 
   # Set custom alignment per column
   for fn in table.field_names:
-    table.align[fn] = alignments[fn]
-
+    table.align[fn] = alignments[fn] 
   return table
 
-def update_txt_file(table = create_and_format_pretty_table()):
+def update_txt_file(table = "NOT ENTERED"):
+  if table == "NOT ENTERED":
+    table = create_and_format_pretty_table()
+    
   table_str = table.get_string()
 
   curr_txt_fp = find_txt_file_location()
