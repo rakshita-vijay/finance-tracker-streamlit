@@ -58,18 +58,28 @@ def create_empty_files(username, user_dir):
         if fname.endswith('.pdf'):
             open(path, "wb").close()
             git_push_pdf(path)
+            
         elif fname.endswith('.csv'):
+            open(path, "w").close()
+            git_push_csv(path)
+            
             fields = ['S.NO', 'DATE', 'DESCRIPTION', 'AMOUNT', 'PAYMENT METHOD', 'STATUS', 'NOTES'] 
             with open(path, "w", newline='') as csv_f:
                 csv_writer = csv.writer(csv_f, delimiter=',')
                 csv_writer.writerow(fields)
             git_push_csv(path)
+            
         elif fname.endswith('_budgets.txt'):  
+            open(path, "w").close()
+            git_push_txt(path)
+            
             with open(path, "w") as bud_f:
                 bud_f.write("monthly = 500, yearly = 6000") 
             git_push_txt(path)
+            
         else:
             open(path, "w").close() 
+            
             if fname.split(".")[1] == 'txt':
                 git_push_txt(path)
             elif fname.split(".")[1] == 'md':
