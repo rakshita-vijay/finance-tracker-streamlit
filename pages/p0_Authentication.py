@@ -93,7 +93,7 @@ def authentication_page():
                 st.session_state['username'] = username
                 st.session_state['password'] = password
                 st.success("Login successful!")
-                st.switch_page("Main_Menu.py") 
+                st.switch_page("pages/m_Main_Menu.py")  
             else:
                 st.error("Invalid credentials.")
         else:
@@ -106,6 +106,6 @@ def authentication_page():
                 ensure_user_dir(username)
                 check_and_recreate_user_files(username)
                 st.success("Registration successful!")
-                st.switch_page("Main_Menu.py") 
+                st.switch_page("pages/m_Main_Menu.py") 
  
 authentication_page()
