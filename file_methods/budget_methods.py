@@ -56,14 +56,13 @@ def changeBudget():
         default_val = int((current_budgets[0].split(" = "))[1])
       else:
         default_val = int((current_budgets[1].split(" = "))[1])
-        
-    budget = None
-    budget = st.number_input(
-      f"Enter your {budget_type} budget:",
-      min_value=0,
-      value=default_val,
-      step=1
-    )
+         
+      budget = st.number_input(
+        f"Enter your {budget_type} budget:",
+        min_value=0,
+        value=default_val,
+        step=1
+      )
     
     submitted = st.form_submit_button("Update Budget")
     if submitted and budget_type != "NONE" and budget is not None:
