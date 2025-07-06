@@ -1,6 +1,6 @@
 import streamlit as st
 if 'username' not in st.session_state:
-    st.switch_page("pages/p0_Authentication.py")
+  st.switch_page("pages/p0_Authentication.py")
 username = st.session_state['username']
 
 import os, csv, sys, datetime, time
@@ -9,7 +9,7 @@ from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transfor
 from file_methods.user_file_utils import get_user_file
 
 def find_csv_file_location():
-  csv_path = get_user_file(username, "csv_transactions", "csv") 
+  csv_path = get_user_file(username, "csv_transactions", "csv")
   return csv_path
 
 def extract_csv_content(curr_csv = find_csv_file_location()):
@@ -178,7 +178,7 @@ def get_trans_line_details():
 
 def add_to_csv(list_of_lists):
   from utils.git_utils import git_push_csv
-    
+
   num_of_next_data_line = len(extract_csv_content())
 
   rows = list_of_lists
@@ -193,7 +193,7 @@ def add_to_csv(list_of_lists):
     csv_wrtr.writerow(row)
 
     num_of_next_data_line += 1
-      
+
   git_push_csv(curr_csv)
   # csv_file.flush()
   # os.fsync(csv_file.fileno())
