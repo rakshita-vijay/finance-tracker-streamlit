@@ -1,6 +1,7 @@
 import streamlit as st
 if 'username' not in st.session_state:
     st.switch_page("pages/p0_Authentication.py") 
+username = st.session_state['username']
 
 from pages.p0_Authentication import authentication_button
 from pages.p1_Add_Transactions import add_transactions_button
