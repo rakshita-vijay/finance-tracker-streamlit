@@ -1,5 +1,5 @@
 import streamlit as st
-import os, csv
+import os, csv, time
 
 from file_methods.user_file_utils import ensure_user_dir
 
@@ -135,6 +135,7 @@ def authentication_page():
         st.session_state['password'] = password
         check_and_recreate_user_files(username)
         st.success("Login successful!")
+        time.sleep(3)
         st.switch_page("pages/m_Main_Menu.py")
       else:
         st.error("Invalid credentials.")
@@ -147,6 +148,7 @@ def authentication_page():
         st.session_state['password'] = password
         check_and_recreate_user_files(username)
         st.success("Registration successful!")
+        time.sleep(3)
         st.switch_page("pages/m_Main_Menu.py")
 
 authentication_page()
