@@ -12,8 +12,7 @@ def find_md_file_location():
   md_path = get_user_file(user_name, "md_report", "md")
   return md_path
 
-def save_and_cleanup_md_report(md_content, timestamp, md_filename="md_report.md", saved_files_dir="saved_files"):
-  md_path = os.path.join(saved_files_dir, md_filename)
+def save_and_cleanup_md_report(md_content, timestamp, md_path = find_md_file_location()): 
   with open(md_path, "w") as f:
     f.write(f"### Report Generated On: {str(timestamp)}")
     f.write(" \n\n--- \n")
