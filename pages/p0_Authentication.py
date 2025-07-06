@@ -19,7 +19,7 @@ CRED_FILE = "saved_files/user_credentials.txt"
 
 def strip_it(cred_fileee):      
     with open(cred_fileee, "r") as f_r:
-        c_in_f = f.readlines() 
+        c_in_f = f_r.readlines() 
         to_keep = [l for l in c_in_f if l.strip() not in [None, '', ""]]
 
     with open(cred_fileee, "w") as f_w:
@@ -31,12 +31,12 @@ def check_credentials(username, password):
         return False 
         
     strip_it(CRED_FILE)
-    with open(CRED_FILE, "r") as f: 
-        content_in_f = f.read()
-        if (''.join(content_in_f.split('\n'))).strip() in [None, '', ""]:
-            return False
-    with open(CRED_FILE, "r") as f: 
-        for line in f:
+    with open(CRED_FILE, "r") as f1: 
+        content_in_f1 = f1.read()
+        if (''.join(content_in_f1.split('\n'))).strip() in [None, '', ""]:
+            return False 
+    with open(CRED_FILE, "r") as f2: 
+        for line in f2:
             u, p = line.strip().split(": ", 1)
             if u == username and p == password:
                 return True
