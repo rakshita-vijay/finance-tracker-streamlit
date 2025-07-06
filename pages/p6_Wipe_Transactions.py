@@ -44,6 +44,7 @@ def wipe_transactions_page():
       st.session_state.wipe_confirm = True
 
   # Step 2: If confirmed, ask for password
+  dunnit = False
   if st.session_state.wipe_confirm:
     pwd = st.text_input("Please enter your password to confirm wiping all transactions", type="password")
     col1, col2 = st.columns(2)
@@ -54,13 +55,17 @@ def wipe_transactions_page():
           with open(csv_path, "w") as f:
             f.write("S.NO,DATE,DESCRIPTION,AMOUNT,PAYMENT METHOD,STATUS,NOTES\n")
           git_push_csv()
-          st.success("All transactions wiped!")
+          # st.success("All transactions wiped!")
+          dunnit = True
           st.session_state.wipe_confirm = False
         else:
           st.error("Incorrect password. Transactions not wiped.")
     with col2:
       if st.button("Cancel"):
         st.session_state.wipe_confirm = False
+        
+  if dunnit:
+    st.success("All transactions wiped!")
 
 maybe_it = '''
 def wipe_transactions_page():
