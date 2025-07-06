@@ -1,6 +1,6 @@
 import streamlit as st
 if 'username' not in st.session_state:
-    st.switch_page("pages/p0_Authentication.py")
+  st.switch_page("pages/p0_Authentication.py")
 username = st.session_state['username']
 
 import os, sys, re, math
