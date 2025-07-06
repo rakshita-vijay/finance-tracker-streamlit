@@ -34,11 +34,44 @@ def wipe_transactions_button():
 def wipe_transactions_page():
   st.header("🗑️ Wipe Transactions")
   st.divider()
+
+  # Step 1: Ask if user wants to wipe
+  if "wipe_confirm" not in st.session_state:
+    st.session_state.wipe_confirm = False
+
+  if not st.session_state.wipe_confirm:
+    if st.button("Wipe All Transactions"):
+      st.session_state.wipe_confirm = True
+
+  # Step 2: If confirmed, ask for password
+  if st.session_state.wipe_confirm:
+    pwd = st.text_input("Please enter your password to confirm wiping all transactions", type="password")
+    col1, col2 = st.columns(2)
+    with col1:
+      if st.button("Confirm Wipe"):
+        if pwd == st.session_state.get('password', ''):
+          csv_path = find_csv_file_location()
+          with open(csv_path, "w") as f:
+            f.write("S.NO,DATE,DESCRIPTION,AMOUNT,PAYMENT METHOD,STATUS,NOTES\n")
+          git_push_csv()
+          st.success("All transactions wiped!")
+          st.session_state.wipe_confirm = False
+        else:
+          st.error("Incorrect password. Transactions not wiped.")
+    with col2:
+      if st.button("Cancel"):
+        st.session_state.wipe_confirm = False
+
+'''
+def wipe_transactions_page():
+  st.header("🗑️ Wipe Transactions")
+  st.divider()
   if st.button("Wipe All Transactions"):
     csv_path = find_csv_file_location()
     with open(csv_path, "w") as f:
       f.write("S.NO,DATE,DESCRIPTION,AMOUNT,PAYMENT METHOD,STATUS,NOTES\n")
     st.success("All transactions wiped!")
   git_push_csv()
+'''
 
 wipe_transactions_page()
