@@ -67,7 +67,7 @@ def register_user(username, password):
     
     with open(CRED_FILE, "r") as f_r:
         c_in_f = f.readlines() 
-    to_keep = [l for l in c_in_f if l.strip() not in [None, '', ""]]
+        to_keep = [l for l in c_in_f if l.strip() not in [None, '', ""]]
     
     with open(CRED_FILE, "w") as f_w:
         f_w.writelines(to_keep) 
