@@ -3,7 +3,7 @@ if 'username' not in st.session_state:
   st.switch_page("pages/p0_Authentication.py")
 username = st.session_state['username'] 
 
-from pages.p0_Authentication import authentication_button, create_empty_files(username)
+from pages.p0_Authentication import authentication_button, create_empty_files 
 create_empty_files(username)
 from pages.p1_Add_Transactions import add_transactions_button
 from pages.p2_View_Spending import view_spending_button
