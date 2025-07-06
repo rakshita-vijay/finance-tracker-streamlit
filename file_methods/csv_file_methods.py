@@ -6,7 +6,7 @@ username = st.session_state['username']
 import os, csv, sys, datetime, time
 from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transformed_table, get_max_width_of_each_column
 
-from file_methods.user_file_utils import get_user_file 
+from file_methods.user_file_utils import get_user_file
 
 def find_csv_file_location():
   csv_path = get_user_file(username, "csv_transactions", "csv") 
@@ -177,6 +177,8 @@ def get_trans_line_details():
   return responses
 
 def add_to_csv(list_of_lists):
+  from utils.git_utils import git_push_csv
+    
   num_of_next_data_line = len(extract_csv_content())
 
   rows = list_of_lists
@@ -191,9 +193,10 @@ def add_to_csv(list_of_lists):
     csv_wrtr.writerow(row)
 
     num_of_next_data_line += 1
-
-  csv_file.flush()
-  os.fsync(csv_file.fileno())
+      
+  git_push_csv(curr_csv)
+  # csv_file.flush()
+  # os.fsync(csv_file.fileno())
   csv_file.close()
 
 def get_max_width_of_each_column_in_csv(csv_dayta = extract_csv_content()):
