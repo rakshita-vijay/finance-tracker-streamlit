@@ -9,7 +9,7 @@ from fpdf import FPDF
 from file_methods.user_file_utils import get_user_file
 
 def find_pdf_file_location():
-  pdf_path = get_user_file(username, "pdf_transactions", "pdf")
+  pdf_path = get_user_file(username, "pdf_of_transactions", "pdf")
   return pdf_path
 
 def txt_to_pdf(txt_file, pdf_file):
