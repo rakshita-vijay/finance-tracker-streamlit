@@ -1,1 +1,0 @@
-monthly = 5, yearly = 65
