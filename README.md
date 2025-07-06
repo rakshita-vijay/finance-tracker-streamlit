@@ -116,24 +116,24 @@ finance-tracker-streamlit/
   
 ## ⚙️ Tech Stack
 
-- **Python 3.11+**
-- **Streamlit** for UI and app logic
-- **GitPython** for GitHub integration
-- **FPDF, PrettyTable, CrewAI** for reports and table formatting
-- **No terminal needed for users!**
+- Python 3.11+
+- Streamlit for UI and app logic
+- GitPython for GitHub integration
+- FPDF, PrettyTable, CrewAI for reports and table formatting
+- No terminal needed for users! 
   
 ---
   
 ## 📝 Known Quirks & Tips
 
-- **Do not delete your user folder or files manually!**
+- Do not delete your user folder or files manually!
 If you do, just log in again - the app will recreate everything for you.
-- **Passwords are stored in plain text** (for demo simplicity).
+- Passwords are stored in plain text (for demo simplicity).
 Do not reuse sensitive passwords.
-- **If you see someone else’s data:**
+- If you see someone else’s data:
   - Make sure you’re logged in as the right user.
   - If the problem persists, open an issue on GitHub.
-- **Session state:**
+- Session state:
   - Each browser tab/session is isolated.
   - If you log out or clear cookies, you’ll need to log in again.
   
@@ -141,9 +141,9 @@ Do not reuse sensitive passwords.
   
 ## 🤝 Credits & License
 
-- **Project by [rakshita-vijay](https://github.com/rakshita-vijay)**
-- **Inspired by the need for simple, private, AI-powered personal finance tools.**
-- **License:** MIT
+- Project by [rakshita-vijay](https://github.com/rakshita-vijay)
+- Inspired by the need for simple, private, AI-powered personal finance tools.
+- License: MIT
   
 ---
   
@@ -151,9 +151,9 @@ Do not reuse sensitive passwords.
 
 - **Open the app:** [finance-tracker-analyser.streamlit.app](https://finance-tracker-analyser.streamlit.app/)
 - **Demo login:**
-  - Username: `rakshita`
-  - Password: `abcd`
-- **No installation or terminal required!**
+  - Username: `demo`
+  - Password: `demo_password_123_not_secure`
+- No installation or terminal required!
   
 ---
   
