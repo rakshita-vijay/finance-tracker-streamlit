@@ -61,6 +61,24 @@ def register_user(username, password):
     git_push_txt(CRED_FILE)
     create_empty_files(username, user_dir)
 
+def check_and_recreate_user_files(username):
+    user_dir = os.path.join('saved_files', username)
+    ensure_user_dir(username)
+    file_list = [
+        f"{username}_csv_transactions.csv",
+        f"{username}_ascii_table_of_transactions.txt",
+        f"{username}_pdf_of_transactions.pdf",
+        f"{username}_md_report.md",
+        f"{username}_budgets.txt"
+    ] 
+    missing_files = []
+    for fname in file_list:
+        path = os.path.join(user_dir, fname)
+        if not os.path.exists(path):
+            missing_files.append(fname)
+    if missing_files:
+        create_empty_files(username, user_dir)
+
 def authentication_page():
     st.title("🔐 Login or Register")
     username = st.text_input("Username")
@@ -75,8 +93,7 @@ def authentication_page():
                 st.session_state['username'] = username
                 st.session_state['password'] = password
                 st.success("Login successful!")
-                st.switch_page("Main_Menu.py")
-                # st.rerun() 
+                st.switch_page("Main_Menu.py") 
             else:
                 st.error("Invalid credentials.")
         else:
@@ -85,10 +102,10 @@ def authentication_page():
             else:
                 register_user(username, password)
                 st.session_state['username'] = username
-                st.session_state['password'] = password
-                st.success("Registration successful!")
-                st.switch_page("Main_Menu.py")
-                # st.rerun()
+                st.session_state['password'] = password 
                 ensure_user_dir(username)
+                check_and_recreate_user_files(username)
+                st.success("Registration successful!")
+                st.switch_page("Main_Menu.py") 
  
 authentication_page()
