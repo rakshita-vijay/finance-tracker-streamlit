@@ -22,7 +22,7 @@ def check_credentials(username, password):
         return False
     with open(CRED_FILE, "r") as f:
         for line in f:
-            u, p = line.strip().split(":", 1)
+            u, p = line.strip().split(": ", 1)
             if u == username and p == password:
                 return True
     return False
