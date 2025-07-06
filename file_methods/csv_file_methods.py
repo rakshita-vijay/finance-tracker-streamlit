@@ -195,26 +195,18 @@ def add_to_csv(list_of_lists):
   csv_wrtr = csv.writer(csv_file)
 
   for row in rows:
-    row[0] = str(num_of_next_data_line).zfill(2)
-
+    row[0] = str(num_of_next_data_line).zfill(2) 
+    
     csv_wrtr.writerow(row)
 
     num_of_next_data_line += 1
 
   git_push_csv(curr_csv)
-  # csv_file.flush()
-  # os.fsync(csv_file.fileno())
   csv_file.close()
-
-(curr_csv = "NOT ENTERED"):
-  if curr_csv == "NOT ENTERED":
-    curr_csv = find_csv_file_location()
-
-
 
 def get_max_width_of_each_column_in_csv(csv_dayta = "NOT ENTERED"):
   if csv_dayta == "NOT ENTERED":
     csv_dayta = extract_csv_content()
 
   max_width_of_each_column_in_csv = get_max_width_of_each_column(csv_dayta)
-  return max_width_of_each_column_in_csv
+  return max_width_of_each_column_in_csv 
