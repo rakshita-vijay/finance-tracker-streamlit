@@ -42,7 +42,10 @@ def check_credentials(username, password):
         return True
   return False
 
-def create_empty_files(username, user_dir):
+def create_empty_files(username, user_dir = None):
+  if user_dir == None:
+    user_dir = os.path.join('saved_files', username)
+    
   file_list = [
     f"{username}_csv_transactions.csv",
     f"{username}_ascii_table_of_transactions.txt",
