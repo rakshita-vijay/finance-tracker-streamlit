@@ -127,9 +127,9 @@ finance-tracker-streamlit/
 ## 📝 Known Quirks & Tips
 
 - Do not delete your user folder or files manually!
-If you do, just log in again - the app will recreate everything for you.
+  - If you do, just log in again - the app will recreate everything for you.
 - Passwords are stored in plain text (for demo simplicity).
-Do not reuse sensitive passwords.
+  - Do not reuse sensitive passwords.
 - If you see someone else’s data:
   - Make sure you’re logged in as the right user.
   - If the problem persists, open an issue on GitHub.
