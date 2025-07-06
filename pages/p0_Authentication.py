@@ -153,4 +153,4 @@ def authentication_page():
         check_and_recreate_user_files(username) 
         st.switch_page("pages/m_Main_Menu.py")
 
-authentication_page()
+authentication_page() 
