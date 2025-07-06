@@ -64,6 +64,10 @@ def create_empty_files(username, user_dir):
                 csv_writer = csv.writer(csv_f, delimiter=',')
                 csv_writer.writerow(fields)
             git_push_csv(path)
+        elif fname.endswith('_budgets.txt'):  
+            with open(path, "w") as bud_f:
+                bud_f.write("monthly = 500, yearly = 6000") 
+            git_push_txt(path)
         else:
             open(path, "w").close() 
             if fname.split(".")[1] == 'txt':
