@@ -43,36 +43,35 @@ def displayBudget(budget_list):
     budget_type = 'YEARLY'
     st.write("{bt} budget = {b}".format(bt = budget_type.title(), b = yb))
 
-def changeBudget():
+def changeBudget(): 
+  current_budgets = get_budgets_list()
+  m_def = int((current_budgets[0].split(" = "))[1])
+  y_def = int((current_budgets[1].split(" = "))[1])
   with st.form("budget_form"):
     budget_type = st.selectbox(
       "Do you want to enter a monthly or yearly budget?",
       options=["NONE", "monthly", "yearly"]
     )
     
-    if budget_type != "NONE":
-      current_budgets = get_budgets_list()
-      if budget_type == "monthly":
-        default_val = int((current_budgets[0].split(" = "))[1])
-      else:
-        default_val = int((current_budgets[1].split(" = "))[1])
-         
+    if budget_type != "NONE": 
       budget = st.number_input(
         f"Enter your {budget_type} budget:",
         min_value=0,
-        value=default_val,
-        step=1
+        value=m_def if budget_type=="monthly" else y_def, 
+        step=1,
+        key=f"{budget_type}_input",
+        disabled=False
       )
     
     submitted = st.form_submit_button("Update Budget")
-    if submitted and budget_type != "NONE" and budget is not None:
+    if submitted and budget_type != "NONE":
       if budget_type == "monthly":
         monthly_budget = budget
         yearly_budget = math.floor(budget * 12)
       else:
         monthly_budget = math.floor(budget / 12)
         yearly_budget = budget
-      bl = f"monthly = {monthly_budget}, yearly = {yearly_budget}".split(', ')
+        
       with open(find_budgets_file_location(), 'w') as f:
         f.write(f"monthly = {monthly_budget}, yearly = {yearly_budget}")
       git_push_txt(find_budgets_file_location(), "Update default budgets via Streamlit")
