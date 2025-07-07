@@ -22,6 +22,8 @@ def account_settings_button():
 
 def account_settings_page():
     st.title("⚙️ Account Settings")
+    
+    st.divider() 
     st.write(f"Logged in as: **{username}**")
     
     # Log Out button
@@ -29,9 +31,7 @@ def account_settings_page():
         # Clear all session state
         for key in list(st.session_state.keys()):
             del st.session_state[key]
-        st.experimental_rerun()  # or st.rerun() depending on Streamlit version
-    
-    st.divider()
+        st.rerun() 
     
     # Delete Account flow
     if 'delete_confirm' not in st.session_state:
@@ -69,7 +69,7 @@ def account_settings_page():
                     for key in list(st.session_state.keys()):
                         del st.session_state[key]
                     st.success("Account deleted successfully. Redirecting to login page...")
-                    st.experimental_rerun()  # or st.rerun()
+                    st.rerun()  # or st.rerun()
                 else:
                     st.error("Incorrect password. Account not deleted.")
         with col2:
