@@ -77,7 +77,7 @@ def account_settings_page():
                     st.stop() 
                     
                 try: 
-                    repo.git.add(all=True) 
+                    repo.git.add(A=True) 
                     repo.index.commit(f"All files of {username} have been deleted :(")
                     origin = repo.remote(name='origin')
                     origin.push() 
