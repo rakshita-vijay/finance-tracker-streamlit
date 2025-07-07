@@ -54,6 +54,9 @@ def account_settings_page():
                 
                 try:
                     shutil.rmtree(user_folder)
+                    
+                    user_dir = f"saved_files/{username}"
+                    os.makedirs(user_dir, exist_ok=True)
                     from pages.p0_Authentication import create_empty_files
                     create_empty_files(username)
                 except Exception as e:
