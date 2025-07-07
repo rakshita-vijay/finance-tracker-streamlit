@@ -63,8 +63,22 @@ def account_settings_page():
         
         if st.button("Confirm Deletion"):
             if pwd_input == password:
-                user_folder = os.path.join("saved_files", username)
-
+                user_folder = os.path.join("saved_files", username) 
+                
+                try:
+                    shutil.rmtree(user_folder)
+                    repo = setup_git_repo()
+                    if repo is None:
+                        return False, "Git repo not found."
+                    repo.git.add(all=True) 
+                    repo.index.commit(f"All files of {username} have been deleted :(")
+                    origin = repo.remote(name='origin')
+                    origin.push()
+                    
+                except Exception as e:
+                    st.error(f"Error deleting user data: {e}")
+                    st.stop() 
+                    
                 # Remove user credentials from credentials file
                 cred_file = "saved_files/user_credentials.txt" 
                 
@@ -80,20 +94,6 @@ def account_settings_page():
                 except Exception as e:
                     st.error(f"Error updating credentials file: {e}")
                     st.stop()
-                
-                try:
-                    shutil.rmtree(user_folder)
-                    repo = setup_git_repo()
-                    if repo is None:
-                        return False, "Git repo not found."
-                    repo.git.add(all=True) 
-                    repo.index.commit(f"All files of {username} have been deleted :(")
-                    origin = repo.remote(name='origin')
-                    origin.push()
-                    
-                except Exception as e:
-                    st.error(f"Error deleting user data: {e}")
-                    st.stop() 
                 
                 # Clear session and redirect to login
                 for key in list(st.session_state.keys()):
