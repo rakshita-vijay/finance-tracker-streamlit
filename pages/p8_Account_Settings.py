@@ -20,19 +20,6 @@ st.set_page_config(
 from the_sidebar import the_sb
 the_sb() 
 
-def setup_git_repo():
-    try:
-        GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
-        repo = git.Repo(".")
-        username = "rakshita-vijay"
-        repo_url = f"https://{username}:{GITHUB_TOKEN}@github.com/{username}/automated-onboarder.git"
-        repo.remote().set_url(repo_url)
-        st.success("Using existing Git repository!")
-        return repo
-    except git.exc.InvalidGitRepositoryError:
-        st.error("Not in a Git repository. Make sure you're running from your repo directory.")
-        return None
-
 def account_settings_button():
     st.page_link("pages/p8_Account_Settings.py", label="⚙️ Account Settings")
 
@@ -67,23 +54,11 @@ def account_settings_page():
                 
                 try:
                     shutil.rmtree(user_folder)
+                    from pages.p0_Authentication import create_empty_files
+                    create_empty_files(username)
                 except Exception as e:
-                    st.error(f"Error deleting user data before pushing to GitHub: {e}")
-                    st.stop() 
-
-                repo = setup_git_repo()
-                if repo is None:
-                    st.error("Git repo not found.")
-                    st.stop() 
-                    
-                try: 
-                    repo.git.add(A=True) 
-                    repo.index.commit(f"All files of {username} have been deleted :(")
-                    origin = repo.remote(name='origin')
-                    origin.push() 
-                except Exception as e:
-                    st.error(f"Error pushing to GitHub: {e}")
-                    st.stop() 
+                    st.error(f"Error deleting user data: {e}")
+                    st.stop()  
                     
                 # Remove user credentials from credentials file
                 cred_file = "saved_files/user_credentials.txt" 
