@@ -67,16 +67,22 @@ def account_settings_page():
                 
                 try:
                     shutil.rmtree(user_folder)
-                    repo = setup_git_repo()
-                    if repo is None:
-                        return False, "Git repo not found."
+                except Exception as e:
+                    st.error(f"Error deleting user data before pushing to GitHub: {e}")
+                    st.stop() 
+
+                repo = setup_git_repo()
+                if repo is None:
+                    st.error("Git repo not found.")
+                    st.stop() 
+                    
+                try: 
                     repo.git.add(all=True) 
                     repo.index.commit(f"All files of {username} have been deleted :(")
                     origin = repo.remote(name='origin')
-                    origin.push()
-                    
+                    origin.push() 
                 except Exception as e:
-                    st.error(f"Error deleting user data: {e}")
+                    st.error(f"Error pushing to GitHub: {e}")
                     st.stop() 
                     
                 # Remove user credentials from credentials file
