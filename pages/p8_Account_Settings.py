@@ -72,3 +72,5 @@ def account_settings_page():
         with col2:
             if st.button("Cancel"):
                 st.session_state.delete_confirm = False 
+
+account_settings_page()
