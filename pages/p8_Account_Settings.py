@@ -43,38 +43,33 @@ def account_settings_page():
             st.session_state.delete_confirm = True
     
     if st.session_state.delete_confirm:
-        pwd_input = st.text_input("Enter your password to confirm account deletion", type="password")
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("Confirm Deletion"):
-                if pwd_input == password:
-                    user_folder = os.path.join("saved_files", username)
-                    try:
-                        shutil.rmtree(user_folder)
-                    except Exception as e:
-                        st.error(f"Error deleting user data: {e}")
-                        st.stop()
-                    # Remove user credentials from credentials file
-                    cred_file = "saved_files/user_credentials.txt"
-                    try:
-                        with open(cred_file, "r") as f:
-                            lines = f.readlines()
-                        with open(cred_file, "w") as f:
-                            for line in lines:
-                                if not line.startswith(f"{username}:"):
-                                    f.write(line)
-                    except Exception as e:
-                        st.error(f"Error updating credentials file: {e}")
-                        st.stop()
-                    # Clear session and redirect to login
-                    for key in list(st.session_state.keys()):
-                        del st.session_state[key]
-                    st.success("Account deleted successfully. Redirecting to login page...")
-                    st.rerun()  # or st.rerun()
-                else:
-                    st.error("Incorrect password. Account not deleted.")
-        with col2:
-            if st.button("Cancel"):
-                st.session_state.delete_confirm = False 
+        pwd_input = st.text_input("Enter your password to confirm account deletion", type="password") 
+        if st.button("Confirm Deletion"):
+            if pwd_input == password:
+                user_folder = os.path.join("saved_files", username)
+                try:
+                    shutil.rmtree(user_folder)
+                except Exception as e:
+                    st.error(f"Error deleting user data: {e}")
+                    st.stop()
+                # Remove user credentials from credentials file
+                cred_file = "saved_files/user_credentials.txt"
+                try:
+                    with open(cred_file, "r") as f:
+                        lines = f.readlines()
+                    with open(cred_file, "w") as f:
+                        for line in lines:
+                            if not line.startswith(f"{username}:"):
+                                f.write(line)
+                except Exception as e:
+                    st.error(f"Error updating credentials file: {e}")
+                    st.stop()
+                # Clear session and redirect to login
+                for key in list(st.session_state.keys()):
+                    del st.session_state[key]
+                st.success("Account deleted successfully. Redirecting to login page...")
+                st.rerun()  # or st.rerun()
+            else:
+                st.error("Incorrect password. Account not deleted.") 
 
 account_settings_page()
