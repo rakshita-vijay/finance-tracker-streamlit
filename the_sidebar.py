@@ -12,3 +12,4 @@ def the_sb():
     st.page_link("pages/p5_Download_Files.py", label="Download Files", icon="⬇️")
     st.page_link("pages/p6_Wipe_Transactions.py", label="Wipe Transactions", icon="🗑️")
     st.page_link("pages/p7_Cleanup.py", label="Cleanup", icon="🧹")
+    st.page_link("pages/p8_Account_Settings.py", label="Account Settings", icon="⚙️") 
