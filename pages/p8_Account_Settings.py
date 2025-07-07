@@ -14,6 +14,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 ) 
 
+from the_sidebar import the_sb
+the_sb() 
+
 def account_settings_button():
     st.page_link("pages/p8_Account_Settings.py", label="⚙️ Account Settings")
 
