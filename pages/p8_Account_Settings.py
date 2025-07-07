@@ -2,7 +2,7 @@ import streamlit as st
 if 'username' not in st.session_state:
     st.switch_page("pages/p0_Authentication.py")
 username = st.session_state['username'] 
-password = st.session_state.get('password', '')
+password = st.session_state['password'] 
 
 import shutil
 import os
