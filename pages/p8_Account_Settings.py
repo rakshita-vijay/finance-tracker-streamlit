@@ -64,6 +64,22 @@ def account_settings_page():
         if st.button("Confirm Deletion"):
             if pwd_input == password:
                 user_folder = os.path.join("saved_files", username)
+
+                # Remove user credentials from credentials file
+                cred_file = "saved_files/user_credentials.txt" 
+                
+                try:
+                    with open(cred_file, "r") as f:
+                        lines = f.readlines()
+                    with open(cred_file, "w") as f:
+                        for line in lines:
+                            if not line.startswith(f"{username}:"):
+                                f.write(line) 
+                    git_push_txt(cred_file, "Updated credentials doc via Streamlit")
+                    
+                except Exception as e:
+                    st.error(f"Error updating credentials file: {e}")
+                    st.stop()
                 
                 try:
                     shutil.rmtree(user_folder)
@@ -77,27 +93,13 @@ def account_settings_page():
                     
                 except Exception as e:
                     st.error(f"Error deleting user data: {e}")
-                    st.stop()
-                    
-                # Remove user credentials from credentials file
-                cred_file = "saved_files/user_credentials.txt"
+                    st.stop() 
                 
-                try:
-                    with open(cred_file, "r") as f:
-                        lines = f.readlines()
-                    with open(cred_file, "w") as f:
-                        for line in lines:
-                            if not line.startswith(f"{username}:"):
-                                f.write(line)
-
-                    git_push_txt(cred_file, "Updated credentials doc via Streamlit")
-                except Exception as e:
-                    st.error(f"Error updating credentials file: {e}")
-                    st.stop()
                 # Clear session and redirect to login
                 for key in list(st.session_state.keys()):
                     del st.session_state[key]
                 st.success("Account deleted successfully. Redirecting to login page...")
+                st.switch_page("pages/p0_Authentication.py")
                 st.rerun()  # or st.rerun()
             else:
                 st.error("Incorrect password. Account not deleted.") 
