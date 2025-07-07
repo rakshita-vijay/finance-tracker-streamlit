@@ -7,6 +7,8 @@ password = st.session_state['password']
 import shutil
 import os
 
+from utils.git_utils import git_push_txt
+
 st.set_page_config(
     page_title="Account Settings",
     page_icon="⚙️",
@@ -61,6 +63,8 @@ def account_settings_page():
                         for line in lines:
                             if not line.startswith(f"{username}:"):
                                 f.write(line)
+
+                    git_push_txt(cred_file, "Updated credentials doc via Streamlit")
                 except Exception as e:
                     st.error(f"Error updating credentials file: {e}")
                     st.stop()
