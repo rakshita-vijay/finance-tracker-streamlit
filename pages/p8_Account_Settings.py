@@ -23,8 +23,9 @@ def account_settings_button():
 def account_settings_page():
     st.title("⚙️ Account Settings")
     
-    st.divider() 
+    st.divider()
     st.write(f"Logged in as: **{username}**")
+    st.divider()
     
     # Log Out button
     if st.button("⏻ Log Out"):
