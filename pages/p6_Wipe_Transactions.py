@@ -26,7 +26,7 @@ def wipe_transactions_page():
   st.header("🗑️ Wipe Transactions")
   st.divider()
 
-  if st.session_state['username'] == "demo":
+  if username == "demo":
     st.error("Sorry, this is the demo account. You cannot wipe transactions from this account :(")
     
   else: 
