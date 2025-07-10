@@ -38,7 +38,7 @@ def account_settings_page():
         st.rerun() 
 
     if username == "demo":
-        st.error("Sorry, this is the demo account. You cannot delete this account :(")
+        st.error("This is the demo account. You cannot delete this account :(")
         
     else: 
         # Delete Account flow
