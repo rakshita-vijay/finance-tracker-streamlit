@@ -36,56 +36,60 @@ def account_settings_page():
         for key in list(st.session_state.keys()):
             del st.session_state[key]
         st.rerun() 
-    
-    # Delete Account flow
-    if 'delete_confirm' not in st.session_state:
-        st.session_state.delete_confirm = False
-    
-    if not st.session_state.delete_confirm:
-        if st.button("⌫ Delete Account"):
-            st.session_state.delete_confirm = True
-    
-    if st.session_state.delete_confirm:
-        pwd_input = st.text_input("Enter your password to confirm account deletion", type="password") 
+
+    if username == "demo":
+        st.error("Sorry, this is the demo account. You cannot delete this account :(")
         
-        if st.button("Confirm Deletion"):
-            if pwd_input == password:
-                user_folder = os.path.join("saved_files", username) 
-                
-                try:
-                    shutil.rmtree(user_folder)
+    else: 
+        # Delete Account flow
+        if 'delete_confirm' not in st.session_state:
+            st.session_state.delete_confirm = False
+        
+        if not st.session_state.delete_confirm:
+            if st.button("⌫ Delete Account"):
+                st.session_state.delete_confirm = True
+        
+        if st.session_state.delete_confirm:
+            pwd_input = st.text_input("Enter your password to confirm account deletion", type="password") 
+            
+            if st.button("Confirm Deletion"):
+                if pwd_input == password:
+                    user_folder = os.path.join("saved_files", username) 
                     
-                    user_dir = f"saved_files/{username}"
-                    os.makedirs(user_dir, exist_ok=True)
-                    from pages.p0_Authentication import create_empty_files
-                    create_empty_files(username)
-                except Exception as e:
-                    st.error(f"Error deleting user data: {e}")
-                    st.stop()  
+                    try:
+                        shutil.rmtree(user_folder)
+                        
+                        user_dir = f"saved_files/{username}"
+                        os.makedirs(user_dir, exist_ok=True)
+                        from pages.p0_Authentication import create_empty_files
+                        create_empty_files(username)
+                    except Exception as e:
+                        st.error(f"Error deleting user data: {e}")
+                        st.stop()  
+                        
+                    # Remove user credentials from credentials file
+                    cred_file = "saved_files/user_credentials.txt" 
                     
-                # Remove user credentials from credentials file
-                cred_file = "saved_files/user_credentials.txt" 
-                
-                try:
-                    with open(cred_file, "r") as f:
-                        lines = f.readlines()
-                    with open(cred_file, "w") as f:
-                        for line in lines:
-                            if not line.startswith(f"{username}:"):
-                                f.write(line) 
-                    git_push_txt(cred_file, "Updated credentials doc via Streamlit")
+                    try:
+                        with open(cred_file, "r") as f:
+                            lines = f.readlines()
+                        with open(cred_file, "w") as f:
+                            for line in lines:
+                                if not line.startswith(f"{username}:"):
+                                    f.write(line) 
+                        git_push_txt(cred_file, "Updated credentials doc via Streamlit")
+                        
+                    except Exception as e:
+                        st.error(f"Error updating credentials file: {e}")
+                        st.stop()
                     
-                except Exception as e:
-                    st.error(f"Error updating credentials file: {e}")
-                    st.stop()
-                
-                # Clear session and redirect to login
-                for key in list(st.session_state.keys()):
-                    del st.session_state[key]
-                st.success("Account deleted successfully. Redirecting to login page...")
-                st.switch_page("pages/p0_Authentication.py")
-                st.rerun()  # or st.rerun()
-            else:
-                st.error("Incorrect password. Account not deleted.") 
+                    # Clear session and redirect to login
+                    for key in list(st.session_state.keys()):
+                        del st.session_state[key]
+                    st.success("Account deleted successfully. Redirecting to login page...")
+                    st.switch_page("pages/p0_Authentication.py")
+                    st.rerun()  # or st.rerun()
+                else:
+                    st.error("Incorrect password. Account not deleted.") 
 
 account_settings_page()
