@@ -1,7 +1,7 @@
 streamlit>=1.28.0
 crewai>=0.28.8
 google-generativeai>=0.3.0
-pysqlite3-binary
+pysqlite3-binary; platform_system == "Linux"
 prettytable
 fpdf
 pypdf
