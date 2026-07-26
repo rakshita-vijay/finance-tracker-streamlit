@@ -16,7 +16,7 @@ from file_methods.csv_file_methods import extract_csv_content
 from file_methods.md_file_methods import find_md_file_location, save_and_cleanup_md_report
 from file_methods.txt_file_methods import create_and_format_pretty_table
 
-from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transformed_table
+from crewai_toolkits_gem_3point5_flash.transform_csv_to_md_table import transformed_table
 
 from utils.git_utils import git_push_md
 
@@ -27,7 +27,7 @@ def gen_report():
     st.stop()
 
   llm = LLM(
-    model="gemini/gemini-2.0-flash",
+    model="gemini/gemini-3.5-flash",
     temperature=0.5,
     api_key=GOOGLE_API_KEY
   )

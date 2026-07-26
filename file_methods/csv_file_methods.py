@@ -4,7 +4,7 @@ if 'username' not in st.session_state:
 username = st.session_state['username']
 
 import os, csv, sys, datetime, time
-from crewai_toolkits_gem_2point0_flash.transform_csv_to_md_table import transformed_table, get_max_width_of_each_column
+from crewai_toolkits_gem_3point5_flash.transform_csv_to_md_table import transformed_table, get_max_width_of_each_column
 
 from file_methods.user_file_utils import get_user_file
 
@@ -16,7 +16,7 @@ def find_csv_file_location():
 def extract_csv_content(curr_csv = "NOT ENTERED"):
   if curr_csv == "NOT ENTERED":
     curr_csv = find_csv_file_location()
-  
+
   csv_file = open(curr_csv, mode='r', encoding='utf-8')
   csv_data = csv.reader(csv_file)
   data_lines = list(csv_data)
@@ -26,7 +26,7 @@ def extract_csv_content(curr_csv = "NOT ENTERED"):
 def display_csv_content(curr_csv = "NOT ENTERED"):
   if curr_csv == "NOT ENTERED":
     curr_csv = find_csv_file_location()
-    
+
   data_lines = extract_csv_content(curr_csv)
 
   res = transformed_table(data_lines)
@@ -195,8 +195,8 @@ def add_to_csv(list_of_lists):
   csv_wrtr = csv.writer(csv_file)
 
   for row in rows:
-    row[0] = str(num_of_next_data_line).zfill(2) 
-    
+    row[0] = str(num_of_next_data_line).zfill(2)
+
     csv_wrtr.writerow(row)
 
     num_of_next_data_line += 1
@@ -209,4 +209,4 @@ def get_max_width_of_each_column_in_csv(csv_dayta = "NOT ENTERED"):
     csv_dayta = extract_csv_content()
 
   max_width_of_each_column_in_csv = get_max_width_of_each_column(csv_dayta)
-  return max_width_of_each_column_in_csv 
+  return max_width_of_each_column_in_csv

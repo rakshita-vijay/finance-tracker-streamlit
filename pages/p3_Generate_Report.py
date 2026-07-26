@@ -1,9 +1,9 @@
 import streamlit as st
 if 'username' not in st.session_state:
   st.switch_page("pages/p0_Authentication.py")
-username = st.session_state['username']  
+username = st.session_state['username']
 
-from pages.p0_Authentication import create_empty_files 
+from pages.p0_Authentication import create_empty_files
 create_empty_files(username)
 
 import os, time
@@ -11,7 +11,7 @@ import os, time
 from file_methods.md_file_methods import find_md_file_location
 from download_to_device import download_file
 
-from crewai_toolkits_gem_2point0_flash.generate_report_from_csv import gen_report
+from crewai_toolkits_gem_3point5_flash.generate_report_from_csv import gen_report
 
 from utils.git_utils import git_push_md
 
@@ -23,7 +23,7 @@ st.set_page_config(
 )
 
 from the_sidebar import the_sb
-the_sb() 
+the_sb()
 
 def generate_report_button():
   st.page_link("pages/p3_Generate_Report.py", label="📝 Generate Report")

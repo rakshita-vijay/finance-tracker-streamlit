@@ -1,6 +1,6 @@
 __import__('pysqlite3')
 import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 import os, sys, csv
 from crewai import Agent, Task, Crew, LLM
@@ -27,7 +27,7 @@ def transformed_table(data_lines):
     raise ValueError("\nGOOGLE_API_KEY environment variable not set. \nPlease set it as a secret in your GitHub repository. \nIf in command line/terminal, run the command: export GOOGLE_API_KEY='YOUR_API_KEY' ")
 
   llm = LLM(
-    model="gemini/gemini-2.0-flash",
+    model="gemini/gemini-3.5-flash",
     temperature=0.5,
     api_key=GOOGLE_API_KEY
   )

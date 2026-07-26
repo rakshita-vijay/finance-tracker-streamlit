@@ -2,9 +2,9 @@
 
 A privacy-first, AI-powered personal finance tracker - **no terminal needed!**
 Just open [the app](https://finance-tracker-analyser.streamlit.app/) and start managing your money, your way.
-  
+
 ---
-  
+
 ## 🌟 Highlights
 
 - **True user isolation:** Each user gets their own private folder and files - no one else can see or change your data.
@@ -13,9 +13,9 @@ Just open [the app](https://finance-tracker-analyser.streamlit.app/) and start m
 - **Instant downloads:** Export your data as CSV, TXT, PDF, Markdown, or ZIP.
 - **Modern UI:** Built with Streamlit, with a clean sidebar menu and custom theme.
 - **Automatic GitHub backup:** All changes are pushed to the repo for transparency.
-  
+
 ---
-  
+
 ## ✨ Features
 
 - **🔐 User Authentication**
@@ -39,9 +39,9 @@ Just open [the app](https://finance-tracker-analyser.streamlit.app/) and start m
   - Clear your own data (with password confirmation).
 - **🧹 Cleanup**
   - Remove temporary files and caches.
-  
+
 ---
-  
+
 ## 🛠️ How It Works
 
 - **Per-User Data Storage**
@@ -55,9 +55,9 @@ Just open [the app](https://finance-tracker-analyser.streamlit.app/) and start m
   - No global/shared files - guaranteed by code and repo structure.
 - **GitHub Integration**
   - All changes are pushed to the repo for transparency and backup.
-  
+
 ---
-  
+
 ## 🗂️ Repo Structure
 
 ```text
@@ -68,7 +68,7 @@ finance-tracker-streamlit/
 ├── .streamlit/                    # Streamlit app config (theme, sidebar)
 │   └── config.toml
 │
-├── crewai_toolkits_gem_2point0_flash/ # AI report generation logic
+├── crewai_toolkits_gem_3point5_flash/ # AI report generation logic
 │   ├── generate_report_from_csv.py
 │   ├── transform_csv_to_md_table.py
 │   └── __init__.py
@@ -111,19 +111,19 @@ finance-tracker-streamlit/
 ├── runtime.txt                    # Python version for deployment
 └── README.md                      # This file!
 ```
-  
+
 ---
-  
+
 ## ⚙️ Tech Stack
 
 - Python 3.11+
 - Streamlit for UI and app logic
 - GitPython for GitHub integration
 - FPDF, PrettyTable, CrewAI for reports and table formatting
-- No terminal needed for users! 
-  
+- No terminal needed for users!
+
 ---
-  
+
 ## 📝 Known Quirks & Tips
 
 - Do not delete your user folder or files manually!
@@ -136,17 +136,17 @@ finance-tracker-streamlit/
 - Session state:
   - Each browser tab/session is isolated.
   - If you log out or clear cookies, you’ll need to log in again.
-  
+
 ---
-  
+
 ## 🤝 Credits & License
 
 - Project by [rakshita-vijay](https://github.com/rakshita-vijay)
 - Inspired by the need for simple, private, AI-powered personal finance tools.
 - License: MIT
-  
+
 ---
-  
+
 ## 🚀 Get Started Now
 
 - **Open the app:** [finance-tracker-analyser.streamlit.app](https://finance-tracker-analyser.streamlit.app/)
@@ -154,7 +154,7 @@ finance-tracker-streamlit/
   - Username: `demo`
   - Password: `demo_password_123_not_secure`
 - No installation or terminal required!
-  
+
 ---
-  
+
 *Last updated: July 2025*

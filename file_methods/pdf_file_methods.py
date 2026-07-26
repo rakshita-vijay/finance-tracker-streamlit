@@ -22,4 +22,4 @@ def txt_to_pdf(txt_file, pdf_file):
     for line in f:
       pdf.cell(0, 10, txt=line.strip(), ln=True)
 
-  pdf.output(pdf_file)
+  pdf.output(pdf_file) 
