@@ -7,3 +7,4 @@ fpdf
 pypdf
 streamlit-option-menu
 gitpython
+crewai[google-genai]
